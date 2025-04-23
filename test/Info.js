@@ -5,6 +5,10 @@ define
     {
     };
 
+	function setSearchType()
+	{	console.log('setSearchType');
+
+	}
 
 
 	info.prototype.draw = function (oControlHost)
@@ -24,6 +28,8 @@ define
 			});
 
 		}
+
+		setSearchType();
 
 		oControlHost.container.innerHTML += 
 		`<style>
