@@ -85,11 +85,14 @@ define
 		console.log('*** Window', window);
 		// window.LaunchParameters.reportXML
 		//.clsComboBoxText._4ln wijzigen van beginWithAny in containAny
-
+		
+		// table.tbody.tr.td class = clsComboBoxText, _4ln
 		const texts = document.querySelectorAll('.clsComboBoxText');
 		if (texts)
 		{	texts.forEach(txt => 
 			{	console.log('** txt', txt);
+				console.log('_4ln', txt._4ln);
+				txt._4ln = 'containAny';
 				console.log('_4ln', txt._4ln);
 
 			});
