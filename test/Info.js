@@ -60,7 +60,7 @@ define
 
 		// 	});
 
-		}
+		// }
 
 		oControlHost.container.innerHTML += 
 		`<style>
