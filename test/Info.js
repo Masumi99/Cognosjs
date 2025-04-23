@@ -43,12 +43,6 @@ define
 				else {console.log('** Tabel niet gevonden', tbls)}
 
 			});
-
-			for (const key in container)
-			{	console.log(key);
-
-			}
-
 	
 		}
 
