@@ -20,7 +20,7 @@ define
 						tbl.setAttribute('title', searchType);
 						tbl.setAttribute('hal_tooltip', searchType);
 
-						const texts = document.querySelectorAll('.clsComboBoxText');
+						const texts = tbl.querySelectorAll('.clsComboBoxText');
 						if (texts)
 						{	texts.forEach(txt => 
 							{	console.log('** txt', txt);
