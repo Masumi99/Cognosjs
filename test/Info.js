@@ -73,6 +73,7 @@ define
 			});
 
 		}
+		console.log('*** Window', window);
     }
 
   info.prototype.initialize = function(oControlHost, fnDoneInitializing)
