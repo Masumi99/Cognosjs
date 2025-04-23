@@ -44,19 +44,21 @@ define
 
 	info.prototype.draw = function (oControlHost)
     {  	console.log('*** Info');
-		const containers = document.querySelectorAll('.clsCboContainer');
-		if (containers)
-		{	console.log('** containers:', containers);
-			containers.forEach(cont => 
-			{	const tbl = cont.querySelector('.clsCboOptions');
-				if (tbl)
-				{	console.log('** table', tbl);
-					tbl.setAttribute('hal_tooltip', 'Bevat een van deze trefwoorden');
+		setSearchType();
+				
+		// const containers = document.querySelectorAll('.clsCboContainer');
+		// if (containers)
+		// {	console.log('** containers:', containers);
+		// 	containers.forEach(cont => 
+		// 	{	const tbl = cont.querySelector('.clsCboOptions');
+		// 		if (tbl)
+		// 		{	console.log('** table', tbl);
+		// 			tbl.setAttribute('hal_tooltip', 'Bevat een van deze trefwoorden');
 
-				}
-				else {console.log('** Tabel niet gevonden', tbl)}
+		// 		}
+		// 		else {console.log('** Tabel niet gevonden', tbl)}
 
-			});
+		// 	});
 
 		}
 
