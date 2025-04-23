@@ -5,7 +5,7 @@ define
     {
     };
 
-	function setSearchType()
+	info.prototype.setSearchType()
 	{	const searchType = 'Bevat een van deze trefwoorden';
 		console.log('Klik');
 
@@ -44,7 +44,7 @@ define
 
 	info.prototype.draw = function (oControlHost)
     {  	console.log('*** Info');
-		setSearchType();
+		this.setSearchType();
 				
 		// const containers = document.querySelectorAll('.clsCboContainer');
 		// if (containers)
@@ -82,7 +82,7 @@ define
 		const btn = document.querySelector('.btn');
 		if (btn)
 		{	btn.addEventListener('click', () => 
-			{	setSearchType();
+			{	this.setSearchType();
 				// const searchType = 'Bevat een van deze trefwoorden';
 				// console.log('Klik');
 
