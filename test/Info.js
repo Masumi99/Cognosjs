@@ -45,7 +45,8 @@ define
 		const btn = document.querySelector('.btn');
 		if (btn)
 		{	btn.addEventListener('click', () => 
-			{	console.log('Klik');
+			{	const searchType = 'Bevat een van deze trefwoorden';
+				console.log('Klik');
 
 
 				const containers = document.querySelectorAll('.clsCboContainer');
@@ -56,12 +57,13 @@ define
 						if (tbls)
 						{	tbls.forEach(tbl => 
 							{	console.log('** table', tbl);
-								tbl.setAttribute('hal_tooltip', 'Bevat een van deze trefwoorden');
+								tbl.setAttribute('title', searchType);
+								tbl.setAttribute('hal_tooltip', searchType);
 
 								const div = tbl.querySelector('.clsComboBoxTextDiv');
 								if (div)
 								{	console.log('** div', div);
-									div.innerHTML = 'Bevat een van deze trefwoorden';
+									div.innerHTML = searchType;
 								}
 								else {console.log('** Div niet gevonden', div)}
 							});
