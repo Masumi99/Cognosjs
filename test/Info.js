@@ -5,62 +5,25 @@ define
     {
     };
 
-	info.prototype.setSearchType()
-	{	const searchType = 'Bevat een van deze trefwoorden';
-		console.log('Klik');
 
 
+	info.prototype.draw = function (oControlHost)
+    {  	console.log('*** Info');
 		const containers = document.querySelectorAll('.clsCboContainer');
 		if (containers)
 		{	console.log('** containers:', containers);
 			containers.forEach(cont => 
-			{	const tbls = cont.querySelectorAll('.clsCboOptions');
-				if (tbls)
-				{	tbls.forEach(tbl => 
-					{	console.log('** table', tbl);
-						tbl.setAttribute('title', searchType);
-						tbl.setAttribute('hal_tooltip', searchType);
-						tbl.hal_tooltip.textContent = searchType; // nieuw
-
-						const div = tbl.querySelector('.clsComboBoxTextDiv');
-						if (div)
-						{	console.log('** div', div);
-							div.innerHTML = searchType;
-						}
-						else {console.log('** Div niet gevonden', div)}
-					});
-				}
-				else 
-				{	console.log('** Tabel niet gevonden', tbls);
+			{	const tbl = cont.querySelector('.clsCboOptions');
+				if (tbl)
+				{	console.log('** table', tbl);
+					tbl.setAttribute('hal_tooltip', 'Bevat een van deze trefwoorden');
 
 				}
-				
-				
+				else {console.log('** Tabel niet gevonden', tbl)}
+
 			});
 
 		}
-
-	}
-
-	info.prototype.draw = function (oControlHost)
-    {  	console.log('*** Info');
-		setSearchType();
-				
-		// const containers = document.querySelectorAll('.clsCboContainer');
-		// if (containers)
-		// {	console.log('** containers:', containers);
-		// 	containers.forEach(cont => 
-		// 	{	const tbl = cont.querySelector('.clsCboOptions');
-		// 		if (tbl)
-		// 		{	console.log('** table', tbl);
-		// 			tbl.setAttribute('hal_tooltip', 'Bevat een van deze trefwoorden');
-
-		// 		}
-		// 		else {console.log('** Tabel niet gevonden', tbl)}
-
-		// 	});
-
-		// }
 
 		oControlHost.container.innerHTML += 
 		`<style>
@@ -82,40 +45,39 @@ define
 		const btn = document.querySelector('.btn');
 		if (btn)
 		{	btn.addEventListener('click', () => 
-			{	setSearchType();
-				// const searchType = 'Bevat een van deze trefwoorden';
-				// console.log('Klik');
+			{	const searchType = 'Bevat een van deze trefwoorden';
+				console.log('Klik');
 
 
-				// const containers = document.querySelectorAll('.clsCboContainer');
-				// if (containers)
-				// {	console.log('** containers:', containers);
-				// 	containers.forEach(cont => 
-				// 	{	const tbls = cont.querySelectorAll('.clsCboOptions');
-				// 		if (tbls)
-				// 		{	tbls.forEach(tbl => 
-				// 			{	console.log('** table', tbl);
-				// 				tbl.setAttribute('title', searchType);
-				// 				tbl.setAttribute('hal_tooltip', searchType);
-				// 				tbl.hal_tooltip.textContent = searchType; // nieuw
+				const containers = document.querySelectorAll('.clsCboContainer');
+				if (containers)
+				{	console.log('** containers:', containers);
+					containers.forEach(cont => 
+					{	const tbls = cont.querySelectorAll('.clsCboOptions');
+						if (tbls)
+						{	tbls.forEach(tbl => 
+							{	console.log('** table', tbl);
+								tbl.setAttribute('title', searchType);
+								tbl.setAttribute('hal_tooltip', searchType);
+								tbl.hal_tooltip.textContent = searchType; //
 
-				// 				const div = tbl.querySelector('.clsComboBoxTextDiv');
-				// 				if (div)
-				// 				{	console.log('** div', div);
-				// 					div.innerHTML = searchType;
-				// 				}
-				// 				else {console.log('** Div niet gevonden', div)}
-				// 			});
-				// 		}
-				// 		else 
-				// 		{	console.log('** Tabel niet gevonden', tbls);
+								const div = tbl.querySelector('.clsComboBoxTextDiv');
+								if (div)
+								{	console.log('** div', div);
+									div.innerHTML = searchType;
+								}
+								else {console.log('** Div niet gevonden', div)}
+							});
+						}
+						else 
+						{	console.log('** Tabel niet gevonden', tbls);
 
-				// 		}
+						}
 						
 						
-				// 	});
+					});
 		
-				// }
+				}
 
 			});
 
