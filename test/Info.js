@@ -6,7 +6,12 @@ define
     };
 
   info.prototype.draw = function (oControlHost)
-    {  console.log('*** Info');
+    {  	console.log('*** Info');
+		const containers = document.querySelectorAll('.clsCboContainer');
+		if (containers)
+		{	console.log('** containers:', containers);
+
+		}
     }
 
   info.prototype.initialize = function(oControlHost, fnDoneInitializing)
