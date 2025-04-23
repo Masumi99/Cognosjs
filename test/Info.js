@@ -56,10 +56,16 @@ define
 						if (tbl)
 						{	console.log('** table', tbl);
 							tbl.setAttribute('hal_tooltip', 'Bevat een van deze trefwoorden');
-		
 						}
 						else {console.log('** Tabel niet gevonden', tbl)}
-		
+						
+						const div = tbl.querySelector('.clsComboBoxTextDiv');
+						if (div)
+						{	console.log('** div', div);
+							div.innerHTML = 'Bevat een van deze trefwoorden';
+						}
+						else {console.log('** Div niet gevonden', div)}
+						
 					});
 		
 				}
