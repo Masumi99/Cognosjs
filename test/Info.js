@@ -73,7 +73,9 @@ define
 			});
 
 		}
+		console.log('*** Window parameters', window.Application.rsPromptParameters.findPromptParameters());
 		console.log('*** Window', window);
+		// window.LaunchParameters.reportXML
     }
 
   info.prototype.initialize = function(oControlHost, fnDoneInitializing)
