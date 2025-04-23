@@ -6,7 +6,7 @@ define
     };
 
   info.prototype.draw = function (oControlHost)
-    {  console.log('Info');
+    {  console.log('*** Info');
     }
 
   info.prototype.initialize = function(oControlHost, fnDoneInitializing)
