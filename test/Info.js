@@ -13,10 +13,11 @@ define
 			containers.forEach(cont => 
 			{	const tbl = cont.querySelector('.clsCboOptions');
 				if (tbl)
-				{	
+				{	console.log('** table', tbl);
 					tbl.setAttribute('hal_tooltip', 'Bevat een van deze trefwoorden');
 
 				}
+				else {console.log('** Tabel niet gevonden', tbl)}
 
 			});
 
