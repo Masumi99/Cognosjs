@@ -44,6 +44,11 @@ define
 
 			});
 
+			for (key in container.keys)
+			{	console.log(key);
+
+			}
+
 	
 		}
 
