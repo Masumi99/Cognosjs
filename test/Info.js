@@ -84,6 +84,17 @@ define
 		console.log('*** Window parameters', window.Application.rsPromptParameters.findPromptParameters());
 		console.log('*** Window', window);
 		// window.LaunchParameters.reportXML
+		//.clsComboBoxText._4ln wijzigen van beginWithAny in containAny
+
+		const texts = document.querySelectorAll('.clsComboBoxText');
+		if (texts)
+		{	texts.forEach(txt => 
+			{	console.log('** txt', txt);
+				console.log('_4ln', txt._4ln);
+
+			});
+
+		}
     }
 
   info.prototype.initialize = function(oControlHost, fnDoneInitializing)
