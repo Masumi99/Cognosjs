@@ -8,11 +8,6 @@ define
 	function setSearchType()
 	{	console.log('setSearchType');
 
-	}
-
-
-	info.prototype.draw = function (oControlHost)
-    {  	console.log('*** Info');
 		const containers = document.querySelectorAll('.clsCboContainer');
 		if (containers)
 		{	console.log('** containers:', containers);
@@ -26,8 +21,27 @@ define
 				else {console.log('** Tabel niet gevonden', tbl)}
 
 			});
-
 		}
+	}
+
+
+	info.prototype.draw = function (oControlHost)
+    {  	console.log('*** Info');
+		// const containers = document.querySelectorAll('.clsCboContainer');
+		// if (containers)
+		// {	console.log('** containers:', containers);
+		// 	containers.forEach(cont => 
+		// 	{	const tbl = cont.querySelector('.clsCboOptions');
+		// 		if (tbl)
+		// 		{	console.log('** table', tbl);
+		// 			tbl.setAttribute('hal_tooltip', 'Bevat een van deze trefwoorden');
+
+		// 		}
+		// 		else {console.log('** Tabel niet gevonden', tbl)}
+
+		// 	});
+
+		// }
 
 		setSearchType();
 
@@ -36,9 +50,10 @@ define
 			.btn {
 				width: 40px;
 				height: 20px;
-				background-color: grey;
+				background-color: steelblue;
 				color: white;
-				border: 1px solid green;
+				border: 1px solid grey;
+				padding-left: 5px;
 			}
 
 			.btn:hover {
