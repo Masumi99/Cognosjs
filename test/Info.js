@@ -22,6 +22,32 @@ define
 			});
 
 		}
+
+		oControlHost.container.innerHTML += 
+		`<style>
+			.btn {
+				width: 40px;
+				height: 20px;
+				background-color: grey;
+				color: white;
+				border: 1px solid green;
+			}
+
+			.btn:hover {
+				cursor: pointer;
+			}
+		</style>
+		<div class="btn">Klik</div>
+		`;
+
+		const btn = document.querySelector('.btn');
+		if (btn)
+		{	btn.addEventListener('click', () => 
+			{	console.log('Klik');
+
+			});
+
+		}
     }
 
   info.prototype.initialize = function(oControlHost, fnDoneInitializing)
