@@ -44,7 +44,7 @@ define
 
 			});
 
-			for (key in container.keys())
+			for (key in container)
 			{	console.log(key);
 
 			}
