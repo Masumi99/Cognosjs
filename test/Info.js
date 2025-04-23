@@ -52,19 +52,25 @@ define
 				if (containers)
 				{	console.log('** containers:', containers);
 					containers.forEach(cont => 
-					{	const tbl = cont.querySelector('.clsCboOptions');
-						if (tbl)
-						{	console.log('** table', tbl);
-							tbl.setAttribute('hal_tooltip', 'Bevat een van deze trefwoorden');
+					{	const tbls = cont.querySelectorAll('.clsCboOptions');
+						if (tbls)
+						{	tbls.forEach(tbl => 
+							{	console.log('** table', tbl);
+								tbl.setAttribute('hal_tooltip', 'Bevat een van deze trefwoorden');
+
+								const div = tbl.querySelector('.clsComboBoxTextDiv');
+								if (div)
+								{	console.log('** div', div);
+									div.innerHTML = 'Bevat een van deze trefwoorden';
+								}
+								else {console.log('** Div niet gevonden', div)}
+							});
 						}
-						else {console.log('** Tabel niet gevonden', tbl)}
+						else 
+						{	console.log('** Tabel niet gevonden', tbls);
+
+						}
 						
-						const div = tbl.querySelector('.clsComboBoxTextDiv');
-						if (div)
-						{	console.log('** div', div);
-							div.innerHTML = 'Bevat een van deze trefwoorden';
-						}
-						else {console.log('** Div niet gevonden', div)}
 						
 					});
 		
