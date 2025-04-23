@@ -180,7 +180,11 @@ define
 		// }
     }
 
-  info.prototype.initialize = function(oControlHost, fnDoneInitializing)
+	info.prototype.getParameters = function(oControlHost)
+    {	return [ {parameter: "Parameter1", values: [{use: "R00009276"}]}];
+    }
+	
+	info.prototype.initialize = function(oControlHost, fnDoneInitializing)
     {
       fnDoneInitializing();
     }
