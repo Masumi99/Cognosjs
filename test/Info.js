@@ -163,7 +163,7 @@ define
 		console.log('*** Window parameters', window.Application.rsPromptParameters.findPromptParameters());
 		console.log('*** Window', window);
 		console.log('*** oControlHost.page', oControlHost.page);
-		// window.Application.LaunchParameters.reportXML
+		console.log('*** XML', window.Application.LaunchParameters.reportXML);
 		//.clsComboBoxText._4ln wijzigen van beginWithAny in containAny
 		// controlhost.page.getAllPromptControls
 		
