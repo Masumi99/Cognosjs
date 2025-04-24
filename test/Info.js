@@ -162,8 +162,10 @@ define
 		}
 		console.log('*** Window parameters', window.Application.rsPromptParameters.findPromptParameters());
 		console.log('*** Window', window);
-		// window.LaunchParameters.reportXML
+		console.log('*** oControlHost.page', oControlHost.page);
+		// window.Application.LaunchParameters.reportXML
 		//.clsComboBoxText._4ln wijzigen van beginWithAny in containAny
+		// controlhost.page.getAllPromptControls
 		
 		// table.tbody.tr.td class = clsComboBoxText, _4ln
 
