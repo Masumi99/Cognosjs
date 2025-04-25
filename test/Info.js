@@ -188,8 +188,8 @@ define
 			//trs[2].fireEvent('onmousedown', event); // fout
 
 			const mousedown = new CustomEvent('mousedown',{bubbles: true});
-			trs[2].addEventListener('mousedown', (e) => {});
-			trs[2].dispatchEvent(mousedown);
+			trs[2].addEventListener('mousedown', (e) => {e.target.dispatchEvent(mousedown)});
+			//trs[2].dispatchEvent(mousedown);
 
 		}
 		// lst table tbody tr td div class=clsListItemLabel
