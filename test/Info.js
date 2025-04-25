@@ -182,7 +182,8 @@ define
 		{	const trs = lst[0].querySelectorAll('TR');
 			console.log('*** TR', trs);
 			const mousedown = new Event('mousedown');
-			trs[2].dispatchEvent(mousedown);
+			//trs[2].dispatchEvent(mousedown);
+			trs[2].fireEvent('onmousedown', event);
 
 		}
 		// lst table tbody tr td div class=clsListItemLabel
