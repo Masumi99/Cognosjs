@@ -179,7 +179,7 @@ define
 		console.log('*** dropdowns', lst);
 		
 		if (lst)
-		{	const trs = lst.querySelectorAll('TR');
+		{	const trs = lst[0].querySelectorAll('TR');
 			console.log('*** TR', trs);
 			trs[2].click();
 
