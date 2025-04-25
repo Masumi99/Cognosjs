@@ -167,6 +167,9 @@ define
 
 		const allControls = oControlHost.page.getAllPromptControls();
 		console.log('*** allControls', allControls);
+		console.log('*** allControls._ydm', allControls[0]._ydm);
+		console.log('*** allControls._ydm.matchAnyWhere', allControls[0]._ydm.getAttribute('matchAnyWhere'));
+		console.log('*** allControls._ydm.matchAll', allControls[0]._ydm.getAttribute('matchAll'));
 
 		//.clsComboBoxText._4ln wijzigen van beginWithAny in containAny
 		// controlhost.page.getAllPromptControls
