@@ -164,6 +164,10 @@ define
 		console.log('*** Window', window);
 		console.log('*** oControlHost.page', oControlHost.page);
 		console.log('*** XML', window.Application.LaunchParameters.reportXML);
+
+		const allControls = oControlHost.page.getAllPromptControls();
+		console.log('*** allControls', allControls);
+
 		//.clsComboBoxText._4ln wijzigen van beginWithAny in containAny
 		// controlhost.page.getAllPromptControls
 		
