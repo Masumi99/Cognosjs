@@ -181,8 +181,9 @@ define
 		if (lst)
 		{	const trs = lst[0].querySelectorAll('TR');
 			console.log('*** TR', trs);
-			const mousedown = new Event('mousedown');
-			trs[2].dispatchEvent(mousedown);
+			//const mousedown = new Event('mousedown');
+			//trs[2].dispatchEvent(mousedown);
+			trs[2].trigger('mousedown');
 
 		}
 		// lst table tbody tr td div class=clsListItemLabel
