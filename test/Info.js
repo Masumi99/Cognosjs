@@ -179,7 +179,9 @@ define
 		console.log('*** dropdowns', lst);
 		
 		if (lst)
-		{	console.log('*** table', lst.table);
+		{	const trs = lst.querySelectorAll('TR');
+			console.log('*** TR', trs);
+			trs[2].click();
 
 		}
 		// lst table tbody tr td div class=clsListItemLabel
