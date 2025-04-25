@@ -187,8 +187,11 @@ define
 
 			//trs[2].fireEvent('onmousedown', event); // fout
 
+			// voegt wel een functie toe aan de tr, maar klikken geeft foutmelding
 			const mousedown = new CustomEvent('mousedown',{bubbles: true});
-			trs[2].addEventListener('mousedown', (e) => {e.target.dispatchEvent(mousedown)});
+			trs[2].addEventListener('mousedown', (e) => {e.target.click()});
+			//trs[2].addEventListener('mousedown', (e) => {e.target.dispatchEvent(mousedown)});
+			
 			//trs[2].dispatchEvent(mousedown);
 
 		}
