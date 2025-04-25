@@ -174,8 +174,14 @@ define
 		allControls[0]._ydm.setAttribute('matchAnywhere', true);
 		allControls[0]._ydm.setAttribute('matchAll', true);
 
+		const lst = document.querySelectorAll('.po_clsListView_dropdown');
+		console.log('*** dropdowns', lst);
+		
+
 		//.clsComboBoxText._4ln wijzigen van beginWithAny in containAny
 		// controlhost.page.getAllPromptControls
+
+		// alle objecttypes: oControlHost.page._xv2 // 39 types, zoals list, table, v2_paretoChart
 		
 		// table.tbody.tr.td class = clsComboBoxText, _4ln
 
