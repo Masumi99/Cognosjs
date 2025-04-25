@@ -174,9 +174,18 @@ define
 		allControls[0]._ydm.setAttribute('matchAnywhere', true);
 		allControls[0]._ydm.setAttribute('matchAll', true);
 
+		// pulldownlijst is onzichtbaar en bevat 4 regels in .clsComboBoxBlocker // heeft diverse events, zoals mousedown
 		const lst = document.querySelectorAll('.po_clsListView_dropdown');
 		console.log('*** dropdowns', lst);
 		
+		if (lst)
+		{	console.log('*** table', lst.table);
+
+		}
+		// lst table tbody tr td div class=clsListItemLabel
+
+		//const lst = document.querySelectorAll('.clsListView_selectWithSearchHardcodedForSize');
+
 
 		//.clsComboBoxText._4ln wijzigen van beginWithAny in containAny
 		// controlhost.page.getAllPromptControls
