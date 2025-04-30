@@ -205,6 +205,8 @@ define
 		// 	report.setParameters(report.getParameters());
 		// }
 
+		console.log('*** cognos', cognos);
+		console.log('*** cognos.reportService', cognos.reportService);
 
 		// lst table tbody tr td div class=clsListItemLabel
 
