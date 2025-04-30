@@ -162,6 +162,7 @@ define
 		}
 		console.log('*** Window parameters', window.Application.rsPromptParameters.findPromptParameters());
 		console.log('*** Window', window);
+		console.log('*** oControlHost', oControlHost);
 		console.log('*** oControlHost.page', oControlHost.page);
 		console.log('*** XML', window.Application.LaunchParameters.reportXML);
 
@@ -197,12 +198,12 @@ define
 		}
 
 
-		const myParameters = report.getParameters()
-		if (myParameters)
-		{	const myParameter = myParameters.getParameterByName("Parameter1");
-			myParameter.setValue("R0009705");
-			report.setParameters(report.getParameters());
-		}
+		// const myParameters = report.getParameters()
+		// if (myParameters)
+		// {	const myParameter = myParameters.getParameterByName("Parameter1");
+		// 	myParameter.setValue("R0009705");
+		// 	report.setParameters(report.getParameters());
+		// }
 
 
 		// lst table tbody tr td div class=clsListItemLabel
