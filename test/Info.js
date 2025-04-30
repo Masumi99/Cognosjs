@@ -195,6 +195,16 @@ define
 			//trs[2].dispatchEvent(mousedown);
 
 		}
+
+
+		const myParameters = report.getParameters()
+		if (myParameters)
+		{	const myParameter = myParameters.getParameterByName("Parameter1");
+			myParameter.setValue("R0009705");
+			report.setParameters(report.getParameters());
+		}
+
+
 		// lst table tbody tr td div class=clsListItemLabel
 
 		//const lst = document.querySelectorAll('.clsListView_selectWithSearchHardcodedForSize');
