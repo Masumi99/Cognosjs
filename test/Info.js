@@ -205,8 +205,11 @@ define
 		// 	report.setParameters(report.getParameters());
 		// }
 
-		console.log('*** cognos', cognos);
-		console.log('*** cognos.reportService', cognos.reportService);
+		// werkt niet, komt van ai
+		// console.log('*** cognos', cognos);
+		// console.log('*** cognos.reportService', cognos.reportService);
+
+		console.log('*** window.Application.GetParameterValues()', window.Application.GetParameterValues());
 
 		// lst table tbody tr td div class=clsListItemLabel
 
