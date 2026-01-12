@@ -67,7 +67,8 @@ function (showDialog, constructHtml, Table, constructCSS)
 		doc.appendChild(tbl);
 		tbl.classList.add('myTable');
 
-		tbl.innerHTML = constructHtml('table');
+		//tbl.innerHTML = constructHtml('table');
+	 container.innerHTML += constructHtml('table');
 
 		setPageClickEvent();
 	}
