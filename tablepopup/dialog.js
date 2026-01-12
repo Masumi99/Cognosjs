@@ -1,4 +1,4 @@
-define(['html.js', 'table.js'], function(constructHtml, Table)  
+define(['https://martinsuyl.netlify.app/tablepopup/html.js', 'https://martinsuyl.netlify.app/tablepopup/table.js'], function(constructHtml, Table)  
 {    let content = contentTblStr = contentTxtStr = '';
 	let dialogPresent;
 	let table;
