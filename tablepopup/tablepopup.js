@@ -64,11 +64,11 @@ function (showDialog, constructHtml, Table, constructCSS)
 
 	function test()
 	{	const tbl = document.createElement('table');
-		doc.appendChild(tbl);
+		//doc.appendChild(tbl);
+		container.appendChild(tbl);
 		tbl.classList.add('myTable');
 
-		//tbl.innerHTML = constructHtml('table');
-	 container.innerHTML += constructHtml('table');
+		tbl.innerHTML = constructHtml('table');
 
 		setPageClickEvent();
 	}
