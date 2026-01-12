@@ -2,6 +2,7 @@ define(function()
 {
 	return function constructCSS()
 	{    return `
+	<style>
 :root {
 	box-sizing: border-box;
 	padding: 0;
@@ -112,6 +113,7 @@ body {
 		border: none;
 	}
 }
+</style>
 `;
 		}
 });
