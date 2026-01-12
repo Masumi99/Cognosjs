@@ -1,5 +1,5 @@
-define(['https://martinsuyl.netlify.app/tablepopup/dialog.js', 'https://martinsuyl.netlify.app/tablepopup/html.js', 'https://martinsuyl.netlify.app/tablepopup/table.js'],
-function (showDialog, constructHtml, Table) 
+define(['https://martinsuyl.netlify.app/tablepopup/dialog.js', 'https://martinsuyl.netlify.app/tablepopup/html.js', 'https://martinsuyl.netlify.app/tablepopup/table.js', 'https://martinsuyl.netlify.app/tablepopup/css.js'],
+function (showDialog, constructHtml, Table, constructCSS) 
 {   
     function tablePopup()
     {  
@@ -14,8 +14,8 @@ function (showDialog, constructHtml, Table)
     tablePopup.prototype.draw = function(oControlHost)
    {  console.log('***** tablePopup');
 
-	//let container = oControlHost.container;
-	//container.innerHTML += // CSS hier
+	let container = oControlHost.container;
+	container.innerHTML += constructCSS();
    
    let doc = document.querySelector('body');
 
