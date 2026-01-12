@@ -6,6 +6,8 @@ define(function()
 
    tablePopup.prototype.initialize = function(oControlHost, fnDoneInitializing)
    {  let a = 1;
+
+    fnDoneInitializing();
    }
 
     tablePopup.prototype.draw = function(oControlHost)
