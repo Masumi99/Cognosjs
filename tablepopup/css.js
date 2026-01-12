@@ -16,6 +16,8 @@ body {
 
 .myTable {
 	border-collapse: collapse;
+	position: absolute;
+	top: 600px;
 
 	tr:first-of-type {
 		background-color: steelblue;
