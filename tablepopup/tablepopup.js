@@ -9,7 +9,7 @@ define(function()
    }
 
     tablePopup.prototype.draw = function(oControlHost)
-   {  console.log('tablePopup');
+   {  console.log('***** tablePopup');
    }
 
    return tablePopup;
