@@ -13,6 +13,9 @@ function (showDialog, constructHtml, Table)
 
     tablePopup.prototype.draw = function(oControlHost)
    {  console.log('***** tablePopup');
+
+	//let container = oControlHost.container;
+	//container.innerHTML += // CSS hier
    
    let doc = document.querySelector('body');
 
