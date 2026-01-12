@@ -1,4 +1,4 @@
-define(['dialog.js', 'html.js', 'table.js'], 
+define(['https://martinsuyl.netlify.app/tablepopup/dialog.js', 'https://martinsuyl.netlify.app/tablepopup/html.js', 'https://martinsuyl.netlify.app/tablepopup/table.js'], 
 function (showDialog, constructHtml, Table) 
 {	let doc = document.querySelector('body');
 
