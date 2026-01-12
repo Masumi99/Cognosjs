@@ -1,18 +1,16 @@
 define(function()
-{   class TablePopup
-    {  constructor()
-       {  this.test = null;
-       }
+{   
+    function tablePopup()
+    {  
     }
 
-   draw(oControlHost)
+   tablePopup.prototype.initialize = function(oControlHost, fnDoneInitializing)
    {  let a = 1;
    }
 
-  initialize()
- {
- }
+    tablePopup.prototype.draw = function(oControlHost)
+   {  console.log('tablePopup');
+   }
 
-
-       return TablePopup;
+   return tablePopup;
 });
