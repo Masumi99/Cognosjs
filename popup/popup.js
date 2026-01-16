@@ -26,10 +26,10 @@ define(function () {
 		draw(oControlHost) {
 			//console.log('***** Popup module draw.', `[${this.tableAttributeName}^="${this.tableName}"]`);
 			insertStyle(oControlHost);
-			this.popupBlock = document.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
-			if (this.popupBlock)
-			{	this.popupBlock.classList.add('hidden');
-			}
+			// this.popupBlock = document.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
+			// if (this.popupBlock)
+			// {	this.popupBlock.classList.add('hidden');
+			// }
 
 			const tbl = document.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);
 			if (tbl)
