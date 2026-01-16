@@ -9,13 +9,25 @@ define(function () {
 		}
 		// -- draw --------------------------------------------------
 		draw(oControlHost) {
-			console.log('***** Popup module draw.');
+			console.log('***** Popup module draw.', `[${this.tableAttributeName}^="${this.tableName}"]`);
+
+			const tbl = document.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);
+			if (tbl)
+			{	console.log('**** gevonden: ', tbl);
+
+			}
+
 		}
 		// -- initialize --------------------------------------------------
 		initialize(oControlHost, fnDoneInitializing) {
-			console.log('***** Popup module initialized.');
-			alert('Popup module initialized.');
-			fnDoneInitializing();
+		const o 					= oControlHost.configuration; 							// argumenten die worden meegegeven aan de custom control
+		if (o != null)																		// voorkomen dat er een foutmelding optreedt
+		{	this.tableAttributeName	= o["table attribute name"]		|| '';					// naam van attribute om naar tabel te zoeken
+			this.tableName			= o["table name"]				|| '';					// naam van de tabel
+		}
+
+		console.log('***** Popup module initialized.');
+		fnDoneInitializing();
 		}
 	};
 
