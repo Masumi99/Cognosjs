@@ -107,6 +107,7 @@ define(function () {
 		}
 
 		this.popupBlock = document.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
+		this.popupBlock.classList.add('popupBlock');
 		this.X = 0;
 		this.Y = 0;
 
