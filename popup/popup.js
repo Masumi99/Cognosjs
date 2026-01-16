@@ -71,12 +71,12 @@ define(function () {
 						{	this.popupBlock.classList.remove('hidden');
 							this.popupBlock.style.top = e.clientY - tblRect.top + 'px';
 							this.popupBlock.style.left = e.clientX - tblRect.left + 'px';
-							console.log('*** mouse', e);
 
 							this.showRowContent(tr);
 
 							this.X = e.clientX;
 							this.Y = e.clientY;
+							console.log('*** mouse', e);
 						}
 					});
 					tr.addEventListener('mouseleave', (e) => 
