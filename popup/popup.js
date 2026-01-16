@@ -40,7 +40,7 @@ define(function () {
 
 			console.log('*** Tabel', `[${this.tableAttributeName}^="${this.tableName}"]`);
 			const tbl = document.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);
-			const tblRect = getBoundingClientRect();
+			const tblRect = tbl.getBoundingClientRect();
 			if (tbl)
 			{	//console.log('**** gevonden: ', tbl);
 				const trs = tbl.querySelectorAll('TR');
