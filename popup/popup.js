@@ -72,7 +72,7 @@ define(function () {
 							//this.popupBlock.style.top = e.clientY - tblRect.top + 'px';
 							//this.popupBlock.style.left = e.clientX - tblRect.left + 'px';
 
-							//this.showRowContent(tr);
+							this.showRowContent(tr);
 
 							this.X = e.clientX;
 							this.Y = e.clientY;
