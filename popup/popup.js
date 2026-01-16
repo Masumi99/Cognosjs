@@ -52,7 +52,7 @@ define(function () {
 		if (o != null)																		// voorkomen dat er een foutmelding optreedt
 		{	this.tableAttributeName	= o["table attribute name"]		|| '';					// naam van attribute om naar tabel te zoeken
 			this.tableName			= o["tabletable name name"]		|| '';					// naam van de tabel
-			this.popupBlockName		= o["popupBlok"]				|| '';					// naam van het blok dat getoond moet worden bij popup
+			this.popupBlockName		= o["popup block name"]			|| '';					// naam van het blok dat getoond moet worden bij popup
 		}
 
 		console.log('***** Popup module initialized.');
