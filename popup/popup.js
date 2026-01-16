@@ -34,7 +34,7 @@ define(function () {
 		let str = '';
 
 		tdTitles.forEach((tr, i) => 
-		{	str += tdTitles[i].innerText + ': ' + tdValues[i],innerText + ', '; 
+		{	str += tdTitles[i].innerText + ': ' + tdValues[i].innerText + ', '; 
 		});
 		this.popupBlock.innerText = str;
 	}
