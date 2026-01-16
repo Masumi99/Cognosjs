@@ -19,8 +19,8 @@ define(function () {
 			.popupBlock {
 				position: absolute;
 				background-color: white;
-				border: 1px solid purple;
-				padding: 20px;
+				border: 2px solid purple;
+				padding: 14px;
 			}
 
 			.hidden
@@ -90,7 +90,7 @@ define(function () {
 				// 	}
 				// });
 				tbl.addEventListener('mouseleave', (e) => 
-				{	//this.popupBlock.classList.add('hidden');
+				{	this.popupBlock.classList.add('hidden');
 					console.log('*** mouse leave', e);
 				});
 
