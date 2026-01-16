@@ -46,11 +46,11 @@ define(function () {
 		draw(oControlHost) {
 			console.log('***** Popup module draw.', `[${this.tableAttributeName}^="${this.popupBlockName}"]`);
 			this.insertStyle(oControlHost);
-			this.popupBlock = document.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
-			if (this.popupBlock)
-			{	this.popupBlock.classList.add('hidden');
-				this.popupBlock.classList.add('popupBlock');
-			}
+			// this.popupBlock = document.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
+			// if (this.popupBlock)
+			// {	this.popupBlock.classList.add('hidden');
+			// 	this.popupBlock.classList.add('popupBlock');
+			// }
 
 			console.log('*** Tabel', `[${this.tableAttributeName}^="${this.tableName}"]`);
 			this.table = document.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);
@@ -101,6 +101,7 @@ define(function () {
 			this.popupBlockName		= o["popup block name"]			|| '';					// naam van het blok dat getoond moet worden bij popup
 		}
 
+		this.popupBlock = document.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
 		this.X = 0;
 		this.Y = 0;
 
