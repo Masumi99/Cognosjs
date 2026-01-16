@@ -35,6 +35,7 @@ define(function () {
 			this.popupBlock = document.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
 			if (this.popupBlock)
 			{	this.popupBlock.classList.add('hidden');
+				this.popupBlock.classList.add('popupBlock');
 			}
 
 			console.log('*** Tabel', `[${this.tableAttributeName}^="${this.tableName}"]`);
@@ -45,6 +46,8 @@ define(function () {
 				trs.forEach(tr => 
 				{	tr.addEventListener('mouseenter', (e) => 
 					{	this.popupBlock.classList.remove('hidden');
+						this.popupBlock.style.top = e.clientY;
+						this.popupBlock.style.left = e.clientX;
 						console.log('*** mouse', e);
 					});
 					tr.addEventListener('mouseleave', (e) => 
