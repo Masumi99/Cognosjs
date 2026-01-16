@@ -18,6 +18,9 @@ define(function () {
 		`<style> 
 			.popupBlock {
 				position: absolute;
+				background-color: white;
+				border: 1px solid purple;
+				padding: 4px;
 			}
 
 			.hidden
