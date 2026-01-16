@@ -36,12 +36,20 @@ define(function () {
 			const tbl = document.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);
 			if (tbl)
 			{	//console.log('**** gevonden: ', tbl);
-				tbl.addEventListener('mouseover', (e) => 
-				{	if (e.target.nodeName === 'TD')
-					{	console.log('mouse over', e.target);
-					}
-
+				const trs = tbl.querySelectorAll('TR');
+				trs.forEach(tr => 
+				{	tr.addEventListener('mouseenter', (e) => 
+					{	this.popupBlock.classList.remove('hidden');
+					});
+					tr.addEventListener('mouseleave', (e) => 
+					{	this.popupBlock.classList.add('hidden');
+					});
 				});
+				// tbl.addEventListener('mouseover', (e) => 
+				// {	if (e.target.nodeName === 'TD')
+				// 	{	console.log('mouse over', e.target);
+				// 	}
+				// });
 
 			}
 
