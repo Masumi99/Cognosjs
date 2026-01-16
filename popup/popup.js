@@ -60,7 +60,7 @@ define(function () {
 		const o 					= oControlHost.configuration; 							// argumenten die worden meegegeven aan de custom control
 		if (o != null)																		// voorkomen dat er een foutmelding optreedt
 		{	this.tableAttributeName	= o["table attribute name"]		|| '';					// naam van attribute om naar tabel te zoeken
-			this.tableName			= o["tabletable name name"]		|| '';					// naam van de tabel
+			this.tableName			= o["table name"]				|| '';					// naam van de tabel
 			this.popupBlockName		= o["popup block name"]			|| '';					// naam van het blok dat getoond moet worden bij popup
 		}
 
