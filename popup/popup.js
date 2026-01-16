@@ -67,12 +67,17 @@ define(function () {
 				const trs = tbl.querySelectorAll('TR');
 				trs.forEach(tr => 
 				{	tr.addEventListener('mouseenter', (e) => 
-					{	this.popupBlock.classList.remove('hidden');
-						this.popupBlock.style.top = e.clientY - tblRect.top + 'px';
-						this.popupBlock.style.left = e.clientX - tblRect.left + 'px';
-						console.log('*** mouse', e);
+					{	if (e.clientX !== this.X || e.clientY !== this.Y)
+						{	this.popupBlock.classList.remove('hidden');
+							this.popupBlock.style.top = e.clientY - tblRect.top + 'px';
+							this.popupBlock.style.left = e.clientX - tblRect.left + 'px';
+							console.log('*** mouse', e);
 
-						this.showRowContent(tr);
+							this.showRowContent(tr);
+
+							this.X = e.clientX;
+							this.Y = e.clientY;
+						}
 					});
 					tr.addEventListener('mouseleave', (e) => 
 					{	this.popupBlock.classList.add('hidden');
@@ -95,6 +100,9 @@ define(function () {
 			this.tableName			= o["table name"]				|| '';					// naam van de tabel
 			this.popupBlockName		= o["popup block name"]			|| '';					// naam van het blok dat getoond moet worden bij popup
 		}
+
+		this.X = 0;
+		this.Y = 0;
 
 		console.log('***** Popup module initialized.');
 		fnDoneInitializing();
