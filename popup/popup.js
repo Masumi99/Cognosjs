@@ -35,7 +35,7 @@ define(function () {
 
 			const tbl = document.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);
 			if (tbl)
-			{	//console.log('**** gevonden: ', tbl);
+			{	console.log('**** gevonden: ', tbl);
 				const trs = tbl.querySelectorAll('TR');
 				trs.forEach(tr => 
 				{	tr.addEventListener('mouseenter', (e) => 
