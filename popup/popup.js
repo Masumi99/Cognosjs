@@ -33,7 +33,7 @@ define(function () {
 		const tdValues = selectedRow.querySelectorAll('TD');
 		let str = '';
 
-		trs.forEach((tr, i) => 
+		tdTitles.forEach((tr, i) => 
 		{	str += tdTitles[i] + ': ' + tdValues[i] + ', '; 
 		});
 		this.popupBlock.innerText = str;
