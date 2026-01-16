@@ -68,12 +68,11 @@ define(function () {
 				trs.forEach(tr => 
 				{	tr.addEventListener('mouseenter', (e) => 
 					{	if (e.clientX !== this.X || e.clientY !== this.Y)
-						{	e.preventDefault();
-							this.popupBlock.classList.remove('hidden');
-							this.popupBlock.style.top = e.clientY - tblRect.top + 'px';
-							this.popupBlock.style.left = e.clientX - tblRect.left + 'px';
+						{	this.popupBlock.classList.remove('hidden');
+							//this.popupBlock.style.top = e.clientY - tblRect.top + 'px';
+							//this.popupBlock.style.left = e.clientX - tblRect.left + 'px';
 
-							this.showRowContent(tr);
+							//this.showRowContent(tr);
 
 							this.X = e.clientX;
 							this.Y = e.clientY;
