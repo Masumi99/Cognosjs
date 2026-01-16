@@ -8,79 +8,73 @@ define(function () {
 	function popup() {
 	};
 	
-	// ------------ setData   -----------------------------------------------------------------
-	
-	popup.prototype.setData = function( oControlHost, oDataStore )
-	{	this.DataStore = oDataStore;														// bewaar de koppeling naar de query voor later gebruik
-	};
-
 	// -- insertStyle  --------------------------------------------------
 
-	popup.prototype.insertStyle = function(oControlHost)
-	{	return 	'<style>' + 
+	// popup.prototype.insertStyle = function(oControlHost)
+	// {	return 	'<style>' + 
 
 			
-			'.' + this.buttonName + ' ' +
-			'{' + 
-				'width: 26px; ' + 
-				'border:none; ' + 
-				'background-color: white; ' + 
-				'color: #0d6efd; ' + 
-				'border-radius: 2px; ' + 
-				'text-align: center; ' +
-				'padding: 15px; ' + 
-				'margin: 0 10px 10px 0; ' + 
-				'padding: 5px 0 5px 0; ' + 
-				'transition: all 0.3s ease-in-out; ' + 
-				'display: inline-block;' +
-				'border-radius: 5px; border: solid 1px #0d6efd' + 
-			'}'	+
+	// 		'.' + this.buttonName + ' ' +
+	// 		'{' + 
+	// 			'width: 26px; ' + 
+	// 			'border:none; ' + 
+	// 			'background-color: white; ' + 
+	// 			'color: #0d6efd; ' + 
+	// 			'border-radius: 2px; ' + 
+	// 			'text-align: center; ' +
+	// 			'padding: 15px; ' + 
+	// 			'margin: 0 10px 10px 0; ' + 
+	// 			'padding: 5px 0 5px 0; ' + 
+	// 			'transition: all 0.3s ease-in-out; ' + 
+	// 			'display: inline-block;' +
+	// 			'border-radius: 5px; border: solid 1px #0d6efd' + 
+	// 		'}'	+
 			
-			'.' + this.buttonName + ':hover ' + 
-			'{' + 
-				'background-color: #0d6efd; ' + 
-				'color: white; ' + 
-				'cursor: pointer' + 
-			'}' +
+	// 		'.' + this.buttonName + ':hover ' + 
+	// 		'{' + 
+	// 			'background-color: #0d6efd; ' + 
+	// 			'color: white; ' + 
+	// 			'cursor: pointer' + 
+	// 		'}' +
 			
-			'.' + this.searchInput + ' ' + 
-			'{' + 
-				'transition: transform 0.3s ease-in-out' + 
-				'border-style: solid; ' + 
-				'border-width: 1px; ' + 
-			'}' +
-			'.active {width: ' + this.boxWidth + '}' +
+	// 		'.' + this.searchInput + ' ' + 
+	// 		'{' + 
+	// 			'transition: transform 0.3s ease-in-out' + 
+	// 			'border-style: solid; ' + 
+	// 			'border-width: 1px; ' + 
+	// 		'}' +
+	// 		'.active {width: ' + this.boxWidth + '}' +
 			
-			// -----
-			'.' + this.searchBox + ' ' + 
-			'{' +
-				'display: none; ' + 
-				'border: solid #e6f0ff 2px; ' + 
-				'box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); ' + 
-				'padding: 0 10px 0 10px; ' + 
-				'background-color: white; ' + 
-				'z-index:100; ' + 
-				'position:absolute; ' + 
-			'}' +
+	// 		// -----
+	// 		'.' + this.searchBox + ' ' + 
+	// 		'{' +
+	// 			'display: none; ' + 
+	// 			'border: solid #e6f0ff 2px; ' + 
+	// 			'box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); ' + 
+	// 			'padding: 0 10px 0 10px; ' + 
+	// 			'background-color: white; ' + 
+	// 			'z-index:100; ' + 
+	// 			'position:absolute; ' + 
+	// 		'}' +
 
-			'.' + this.searchList + ' ' + 
-			'{' +
-				'width:' + this.boxWidth + '; ' + 
-				'height:' + this.resultListHeight + '; ' +
-				'border-style: solid; ' + 
-				'border-width: 1px; ' + 
-			'}' +
+	// 		'.' + this.searchList + ' ' + 
+	// 		'{' +
+	// 			'width:' + this.boxWidth + '; ' + 
+	// 			'height:' + this.resultListHeight + '; ' +
+	// 			'border-style: solid; ' + 
+	// 			'border-width: 1px; ' + 
+	// 		'}' +
 	 
-			// ------
+	// 		// ------
 			
-			'</style>';
-	}
+	// 		'</style>';
+	// }
 
 	// -- draw --------------------------------------------------
 
 	popup.prototype.draw = function(oControlHost)
-	{	const cont = oControlHost.container; 
-		console.log('Popup module initialized.')
+	{	//const cont = oControlHost.container; 
+		console.log('Popup module initialized.');
 		
 		// const randomnr 		= parseInt((Math.random() * 100000)).toString();				// random nummer voor unieke naam van dit object
 		// this.buttonName 	= 'srchBtn' + randomnr;											// geef knop een unieke naam
@@ -136,22 +130,23 @@ define(function () {
 	// -- initialize --------------------------------------------------
 
 	popup.prototype.initialize = function( oControlHost, fnDoneInitializing )
-	{	const o 					= oControlHost.configuration; 								// argumenten die worden meegegeven aan de custom control
-		if (o != null)																			// voorkomen dat er een foutmelding optreedt
-		{	this.promptName			= o["Prompt name"];											// bewaar de naam van de prompt
-			this.parameterName		= o["Parameter name"];										// naam van de prompt parameter
-			this.boxWidth			= o["Width"]  								|| '300px';		// breedte van het popup formulier
-			this.resultListHeight	= o["Result list height"] 					|| '200px';		// hoogte van de resultatenlijst
-			this.showTooltip		= o["Show tooltip in result list"]			|| '';			// tooltips laten zien in resultatenlijst
-			this.iconSymbol			= o["Icon symbol number"]					|| '&#128269';	// nummer van icoon - default vergrootglas
-			this.resultListMax		= strToInt(o["Max items in result list"]	|| '10');		// maximaal items in resultatenlijst
-			this.keyColumnNr		= strToInt(o["Key column number"]			|| '1');		// nummer van kolom met de sleutel
-			this.displayColumnNr	= strToInt(o["Display text column number"]	|| '2');		// nummer van kolom met de display tekst
-			this.tooltipColumnNr	= strToInt(o["Tooltip column number"]		|| '1');		// nummer van kolom met de tooltip
-		}
-		else
-		{	alert('No parameters given!');	
-		}
+	{	
+		// const o 					= oControlHost.configuration; 								// argumenten die worden meegegeven aan de custom control
+		// if (o != null)																			// voorkomen dat er een foutmelding optreedt
+		// {	this.promptName			= o["Prompt name"];											// bewaar de naam van de prompt
+		// 	this.parameterName		= o["Parameter name"];										// naam van de prompt parameter
+		// 	this.boxWidth			= o["Width"]  								|| '300px';		// breedte van het popup formulier
+		// 	this.resultListHeight	= o["Result list height"] 					|| '200px';		// hoogte van de resultatenlijst
+		// 	this.showTooltip		= o["Show tooltip in result list"]			|| '';			// tooltips laten zien in resultatenlijst
+		// 	this.iconSymbol			= o["Icon symbol number"]					|| '&#128269';	// nummer van icoon - default vergrootglas
+		// 	this.resultListMax		= strToInt(o["Max items in result list"]	|| '10');		// maximaal items in resultatenlijst
+		// 	this.keyColumnNr		= strToInt(o["Key column number"]			|| '1');		// nummer van kolom met de sleutel
+		// 	this.displayColumnNr	= strToInt(o["Display text column number"]	|| '2');		// nummer van kolom met de display tekst
+		// 	this.tooltipColumnNr	= strToInt(o["Tooltip column number"]		|| '1');		// nummer van kolom met de tooltip
+		// }
+		// else
+		// {	alert('No parameters given!');	
+		// }
 		fnDoneInitializing();
 	}
 
@@ -167,7 +162,7 @@ define(function () {
 	// ------------ setData   -----------------------------------------------------------------
 	
 	srch.prototype.setData = function( oControlHost, oDataStore )
-	{	this.DataStore = oDataStore;														// bewaar de koppeling naar de query voor later gebruik
+	{	//this.DataStore = oDataStore;														// bewaar de koppeling naar de query voor later gebruik
 	};
 
 	return popup;
