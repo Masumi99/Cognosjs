@@ -27,6 +27,17 @@ define(function () {
 		}
 	}
 
+	showRowContent(selectedRow)
+	{	const firstRow = this.table.querySelector('TR');
+		const tdTitles = firstRow.querySelectorAll('TD');
+		const tdValues = selectedRow.querySelectorAll('TD');
+		let str = '';
+
+		trs.forEach((tr, i) => 
+		{	str += tdTitles[i] + ': ' + tdValues[i] + ', '; 
+		});
+		this.popupBlock.innerText = str;
+	}
 
 		// -- draw --------------------------------------------------
 		draw(oControlHost) {
@@ -39,13 +50,14 @@ define(function () {
 			}
 
 			console.log('*** Tabel', `[${this.tableAttributeName}^="${this.tableName}"]`);
+			this.table = document.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);
 			const tbl = document.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);
-			const panel = document.querySelector(`[hal_paneid="PinnedOnDemandToolbarPane"]`);
+			
+			//const panel = document.querySelector(`[hal_paneid="PinnedOnDemandToolbarPane"]`);
+			// if (panel)
+			// {	console.log('*** panel', panel, panel.style.top, panel.style.height);
+			// }
 
-			if (panel)
-			{	console.log('*** panel', panel, panel.style.top, panel.style.height);
-
-			}
 			const tblRect = tbl.getBoundingClientRect();
 			if (tbl)
 			{	//console.log('**** gevonden: ', tbl);
@@ -53,9 +65,11 @@ define(function () {
 				trs.forEach(tr => 
 				{	tr.addEventListener('mouseenter', (e) => 
 					{	this.popupBlock.classList.remove('hidden');
-						this.popupBlock.style.top = e.clientY - panel.style.top + 'px';
+						this.popupBlock.style.top = e.clientY - tblRect.top + 'px';
 						this.popupBlock.style.left = e.clientX - tblRect.left + 'px';
 						console.log('*** mouse', e);
+
+						this.showRowContent(tr);
 					});
 					tr.addEventListener('mouseleave', (e) => 
 					{	this.popupBlock.classList.add('hidden');
