@@ -13,12 +13,14 @@ define(function () {
 	insertStyle(oControlHost)
 	{	const cont = oControlHost.container; 
 
-		cont.innerHTML += 
+		if (cont)
+		{	cont.innerHTML += 
 		`<style> 
 			.hidden
 			{	display: hidden;
 			}
 		</style>`;
+		}
 	}
 
 
