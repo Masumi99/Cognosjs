@@ -40,14 +40,15 @@ define(function () {
 
 			console.log('*** Tabel', `[${this.tableAttributeName}^="${this.tableName}"]`);
 			const tbl = document.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);
+			const tblRect = getBoundingClientRect();
 			if (tbl)
 			{	//console.log('**** gevonden: ', tbl);
 				const trs = tbl.querySelectorAll('TR');
 				trs.forEach(tr => 
 				{	tr.addEventListener('mouseenter', (e) => 
 					{	this.popupBlock.classList.remove('hidden');
-						this.popupBlock.style.top = e.clientY + 'px';
-						this.popupBlock.style.left = e.clientX + 'px';
+						this.popupBlock.style.top = e.clientY - tblRect.top + 'px';
+						this.popupBlock.style.left = e.clientX - tblRect.left + 'px';
 						console.log('*** mouse', e);
 					});
 					tr.addEventListener('mouseleave', (e) => 
