@@ -17,7 +17,7 @@ define(function () {
 		{	cont.innerHTML += 
 		`<style> 
 			.hidden
-			{	display: none;
+			{	display: none !important;
 			}
 		</style>`;
 		}
