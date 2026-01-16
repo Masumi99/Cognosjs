@@ -76,11 +76,12 @@ define(function () {
 
 							this.X = e.clientX;
 							this.Y = e.clientY;
-							console.log('*** mouse', e);
+							console.log('*** mouse enter', e);
 						}
 					});
 					tr.addEventListener('mouseleave', (e) => 
 					{	this.popupBlock.classList.add('hidden');
+							console.log('*** mouse leave', e);
 					});
 				});
 				// tbl.addEventListener('mouseover', (e) => 
