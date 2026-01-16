@@ -53,7 +53,7 @@ define(function () {
 				trs.forEach(tr => 
 				{	tr.addEventListener('mouseenter', (e) => 
 					{	this.popupBlock.classList.remove('hidden');
-						this.popupBlock.style.top = e.clientY - tblRect.top + 'px';
+						this.popupBlock.style.top = e.clientY - panel.style.top + 'px';
 						this.popupBlock.style.left = e.clientX - tblRect.left + 'px';
 						console.log('*** mouse', e);
 					});
