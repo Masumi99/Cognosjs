@@ -4,23 +4,20 @@
 define(function () {
 	"use strict";
 
-	function popup() {
+	class popup {
+		constructor() {
+		}
+		// -- draw --------------------------------------------------
+		draw(oControlHost) {
+			console.log('***** Popup module draw.');
+		}
+		// -- initialize --------------------------------------------------
+		initialize(oControlHost, fnDoneInitializing) {
+			console.log('***** Popup module initialized.');
+			alert('Popup module initialized.');
+			fnDoneInitializing();
+		}
 	};
-	
-
-	// -- draw --------------------------------------------------
-
-	popup.prototype.draw = function(oControlHost)
-	{	console.log('***** Popup module draw.');
-	}
-
-	// -- initialize --------------------------------------------------
-
-	popup.prototype.initialize = function( oControlHost, fnDoneInitializing )
-	{	console.log('***** Popup module initialized.');
-		alert('Popup module initialized.');
-		fnDoneInitializing();
-	}
 
 	return popup;
 }
