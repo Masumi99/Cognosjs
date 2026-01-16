@@ -40,7 +40,7 @@ define(function () {
 
 			console.log('*** Tabel', `[${this.tableAttributeName}^="${this.tableName}"]`);
 			const tbl = document.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);
-			const panel = document.querySelector([hal_paneid="PinnedOnDemandToolbarPane"]);
+			const panel = document.querySelector(`[hal_paneid="PinnedOnDemandToolbarPane"]`);
 
 			if (panel)
 			{	console.log('*** panel', panel, panel.style.top, panel.style.height);
