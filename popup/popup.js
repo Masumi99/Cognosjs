@@ -26,7 +26,7 @@ define(function () {
 
 		// -- draw --------------------------------------------------
 		draw(oControlHost) {
-			//console.log('***** Popup module draw.', `[${this.tableAttributeName}^="${this.tableName}"]`);
+			console.log('***** Popup module draw.', `[${this.tableAttributeName}^="${this.popupBlockName}"]`);
 			this.insertStyle(oControlHost);
 			this.popupBlock = document.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
 			if (this.popupBlock)
