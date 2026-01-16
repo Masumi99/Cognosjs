@@ -46,8 +46,8 @@ define(function () {
 				trs.forEach(tr => 
 				{	tr.addEventListener('mouseenter', (e) => 
 					{	this.popupBlock.classList.remove('hidden');
-						this.popupBlock.style.top = e.clientY;
-						this.popupBlock.style.left = e.clientX;
+						this.popupBlock.style.top = e.clientY + 'px';
+						this.popupBlock.style.left = e.clientX + 'px';
 						console.log('*** mouse', e);
 					});
 					tr.addEventListener('mouseleave', (e) => 
