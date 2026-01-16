@@ -90,8 +90,8 @@ define(function () {
 				// 	}
 				// });
 				tbl.addEventListener('mouseleave', (e) => 
-				{	this.popupBlock.classList.add('hidden');
-						console.log('*** mouse leave', e);
+				{	//this.popupBlock.classList.add('hidden');
+					console.log('*** mouse leave', e);
 				});
 
 			}
