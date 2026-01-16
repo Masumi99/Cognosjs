@@ -14,6 +14,10 @@ define(function () {
 			const tbl = document.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);
 			if (tbl)
 			{	console.log('**** gevonden: ', tbl);
+				tbl.addEventListener('mouseenter', () => 
+				{	console.log('mouse entered');
+
+				});
 
 			}
 
