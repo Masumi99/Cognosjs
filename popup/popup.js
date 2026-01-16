@@ -69,8 +69,8 @@ define(function () {
 				{	tr.addEventListener('mouseenter', (e) => 
 					{	if (e.clientX !== this.X || e.clientY !== this.Y)
 						{	this.popupBlock.classList.remove('hidden');
-							//this.popupBlock.style.top = e.clientY - tblRect.top + 'px';
-							//this.popupBlock.style.left = e.clientX - tblRect.left + 'px';
+							this.popupBlock.style.top = e.clientY - tblRect.top + 'px';
+							this.popupBlock.style.left = e.clientX - tblRect.left + 20 + 'px';
 
 							this.showRowContent(tr);
 
