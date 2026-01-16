@@ -11,16 +11,16 @@ define(function () {
 	// -- insertStyle  --------------------------------------------------
 
 	insertStyle(oControlHost)
-	{	//const cont = oControlHost.container; 
+	{	const cont = oControlHost.container; 
 
-		// if (cont)
-		// {	cont.innerHTML += 
-		// `<style> 
-		// 	.hidden
-		// 	{	display: hidden;
-		// 	}
-		// </style>`;
-		// }
+		if (cont)
+		{	cont.innerHTML += 
+		`<style> 
+			.hidden
+			{	display: hidden;
+			}
+		</style>`;
+		}
 	}
 
 
