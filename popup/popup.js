@@ -16,6 +16,10 @@ define(function () {
 		if (cont)
 		{	cont.innerHTML += 
 		`<style> 
+			.popupBlock {
+				position: absolute;
+			}
+
 			.hidden
 			{	display: none !important;
 			}
@@ -41,6 +45,7 @@ define(function () {
 				trs.forEach(tr => 
 				{	tr.addEventListener('mouseenter', (e) => 
 					{	this.popupBlock.classList.remove('hidden');
+						console.log('*** mouse', e);
 					});
 					tr.addEventListener('mouseleave', (e) => 
 					{	this.popupBlock.classList.add('hidden');
