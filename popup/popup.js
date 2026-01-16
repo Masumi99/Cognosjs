@@ -148,6 +148,7 @@ define(function () {
 		// {	alert('No parameters given!');	
 		// }
 		console.log('***** Popup module initialized.');
+		alert('Popup module initialized.');
 		fnDoneInitializing();
 	}
 
