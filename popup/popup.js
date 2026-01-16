@@ -39,7 +39,7 @@ define(function () {
 		tdTitles.forEach((tr, i) => 
 		{	str += tdTitles[i].innerText + ': ' + tdValues[i].innerText + '</br>'; 
 		});
-		this.popupBlock.innerText = str;
+		this.popupBlock.innerHTML = str;
 	}
 
 		// -- draw --------------------------------------------------
