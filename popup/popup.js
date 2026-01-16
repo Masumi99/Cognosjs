@@ -15,7 +15,7 @@ define(function () {
 			if (tbl)
 			{	console.log('**** gevonden: ', tbl);
 				tbl.addEventListener('mouseover', (e) => 
-				{	//if (e.target.nodeName === 'span')
+				{	if (e.target.nodeName === 'TD')
 					{	console.log('mouse over', e.target);
 					}
 
