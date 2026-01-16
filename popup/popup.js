@@ -27,7 +27,7 @@ define(function () {
 		// -- draw --------------------------------------------------
 		draw(oControlHost) {
 			//console.log('***** Popup module draw.', `[${this.tableAttributeName}^="${this.tableName}"]`);
-			insertStyle(oControlHost);
+			//insertStyle(oControlHost);
 			// this.popupBlock = document.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
 			// if (this.popupBlock)
 			// {	this.popupBlock.classList.add('hidden');
