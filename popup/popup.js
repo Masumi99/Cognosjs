@@ -79,16 +79,20 @@ define(function () {
 							console.log('*** mouse enter', e);
 						}
 					});
-					tr.addEventListener('mouseleave', (e) => 
-					{	this.popupBlock.classList.add('hidden');
-							console.log('*** mouse leave', e);
-					});
+					// tr.addEventListener('mouseleave', (e) => 
+					// {	this.popupBlock.classList.add('hidden');
+					// 		console.log('*** mouse leave', e);
+					// });
 				});
 				// tbl.addEventListener('mouseover', (e) => 
 				// {	if (e.target.nodeName === 'TD')
 				// 	{	console.log('mouse over', e.target);
 				// 	}
 				// });
+				tbl.addEventListener('mouseleave', (e) => 
+				{	this.popupBlock.classList.add('hidden');
+						console.log('*** mouse leave', e);
+				});
 
 			}
 
