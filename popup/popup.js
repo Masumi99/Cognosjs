@@ -74,7 +74,7 @@ define(function () {
 
 	popup.prototype.draw = function(oControlHost)
 	{	//const cont = oControlHost.container; 
-		console.log('Popup module initialized.');
+		console.log('***** Popup module draw.');
 		
 		// const randomnr 		= parseInt((Math.random() * 100000)).toString();				// random nummer voor unieke naam van dit object
 		// this.buttonName 	= 'srchBtn' + randomnr;											// geef knop een unieke naam
@@ -147,6 +147,7 @@ define(function () {
 		// else
 		// {	alert('No parameters given!');	
 		// }
+		console.log('***** Popup module initialized.');
 		fnDoneInitializing();
 	}
 
