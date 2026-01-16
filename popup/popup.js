@@ -20,7 +20,7 @@ define(function () {
 				position: absolute;
 				background-color: white;
 				border: 1px solid purple;
-				padding: 4px;
+				padding: 20px;
 			}
 
 			.hidden
@@ -69,7 +69,7 @@ define(function () {
 				{	tr.addEventListener('mouseenter', (e) => 
 					{	if (e.clientX !== this.X || e.clientY !== this.Y)
 						{	this.popupBlock.classList.remove('hidden');
-							this.popupBlock.style.top = e.clientY - tblRect.top + 'px';
+							this.popupBlock.style.top = e.clientY - tblRect.top + 20 + 'px';
 							this.popupBlock.style.left = e.clientX - tblRect.left + 20 + 'px';
 
 							this.showRowContent(tr);
