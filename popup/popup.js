@@ -17,7 +17,7 @@ define(function () {
 		if (cont)
 		{	cont.innerHTML += 
 		`<style> 
-			.popupBlock {
+			.popupBlock_${this.uniqueId} {
 				position: absolute;
 				background-color: white;
 				font-family: "Segoe UI", Arial, sans-serif;
@@ -68,7 +68,7 @@ define(function () {
 
 			if (this.popupBlock)
 			{	this.popupBlock.classList.add('hidden');
-				this.popupBlock.classList.add('popupBlock');
+				this.popupBlock.classList.add(`popupBlock_${this.uniqueId}`);
 			}
 
 			const tbl = this.table = document.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);			
@@ -115,9 +115,7 @@ define(function () {
 				console.log('oControlHost', o, this.showColumns);
 			}
 
-			this.containerId = oControlHost.container.getAttribute('id'); 
-			console.log('*** container id', this.containerId);
-
+			this.uniqueId = oControlHost.container.getAttribute('id'); 
 			this.popupBlock = document.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
 			this.popupBlock?.classList.add('popupBlock');
 			this.X = 0;
