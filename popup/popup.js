@@ -115,6 +115,9 @@ define(function () {
 				console.log('oControlHost', o, this.showColumns);
 			}
 
+			this.containerId = oControlHost.container.getAttribute('id'); 
+			console.log('*** container id', this.containerId);
+
 			this.popupBlock = document.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
 			this.popupBlock?.classList.add('popupBlock');
 			this.X = 0;
