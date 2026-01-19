@@ -6,7 +6,7 @@ define(function () {
 
 	class popup 
 	{	constructor() 							// *** aan in Cognos
-		{	oControlHost.loadingText = "Loading...";
+		{	// oControlHost.loadingText = "Loading...";
 		}
 
 	// -- insertStyle  --------------------------------------------------
