@@ -101,17 +101,24 @@ define(function () {
 				});
 
 			}
+		}
 
-				const win = window;
-				console.log('Window', win);
+
+		// -- initialize --------------------------------------------------
+
+		show(oControlHost) 
+		{
+				// const win = window;
+				// console.log('Window', win);
 				const pb = document.querySelector('.pb');
 				console.log('pb', pb);
 				pb.addEventListener('mouseover', (e) => 
-				{	console.log(e.target);
+				{	console.log('mouseover', e.target);
 				});
+			
 		}
-
-		// -- initialize --------------------------------------------------
+	 
+	 	// -- initialize --------------------------------------------------
 
 		initialize(oControlHost, fnDoneInitializing) 
 		{	const o 					= oControlHost.configuration; 				// argumenten die worden meegegeven aan de custom control
