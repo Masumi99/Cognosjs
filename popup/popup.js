@@ -85,6 +85,7 @@ define(function () {
 				// });
 
 				const tbl = this.table = pb.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);			
+				console.log('*** pb', pb, '*** tbl', tbl);
 				const tblRect = tbl.getBoundingClientRect();
 
 				if (tbl)
