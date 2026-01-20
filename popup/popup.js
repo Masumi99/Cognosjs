@@ -103,6 +103,17 @@ define(function () {
 
 			}
 		 	console.log('*** nrOfDraws', this.nrOfDraws++);
+
+				const pbs = document.querySelectorAll('.pb');
+				console.log('pbs', pbs);
+				pbs.forEach(pb => {
+					pb.addEventListener('mouseover', (e) => 
+					{	console.log('mouseover', e.target);
+					});
+				});
+				const page = oControlHost.page;
+				console.log('*** page', page);
+		 
 		}
 
 
@@ -114,15 +125,6 @@ define(function () {
 				// console.log('Window', win);
 				console.log('*** oControlHost', oControlHost);
 			
-				const pbs = document.querySelectorAll('.pb');
-				console.log('pbs', pbs);
-				pbs.forEach(pb => {
-					pb.addEventListener('mouseover', (e) => 
-					{	console.log('mouseover', e.target);
-					});
-				});
-				const page = oControlHost.page;
-				console.log('*** page', page);
 
 		}
 	 
