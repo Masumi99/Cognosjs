@@ -8,6 +8,7 @@ define(function () {
 	class popup 
 	{	constructor() 							// *** aan in Cognos
 		{	//oControlHost.loadingText = "Loading...";
+			this.nrOfDraws = 0;
 		}
 		
 
@@ -101,6 +102,7 @@ define(function () {
 				});
 
 			}
+		 	console.log('*** nrOfDraws', this.nrOfDraws++);
 		}
 
 
