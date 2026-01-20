@@ -102,6 +102,9 @@ define(function () {
 
 			}
 
+				const win = window;
+				console.log('Window', win);
+
 		}
 
 		// -- initialize --------------------------------------------------
