@@ -104,6 +104,8 @@ define(function () {
 
 				const win = window;
 				console.log('Window', win);
+				const pb = document.querySelector('.pb');
+				console.log('pb', pb);
 
 		}
 
