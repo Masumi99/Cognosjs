@@ -72,47 +72,51 @@ define(function () {
 
 			if (this.popupBlock)
 			{	this.popupBlock.classList.add('hidden');
-				this.popupBlock.classList.add('popupBlock');
+				this.popupBlock.classList.add(`popupBlock_${this.uniqueId}`);
 			}
 
-			const tbl = this.table = document.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);			
-			const tblRect = tbl.getBoundingClientRect();
+			const pbs = document.querySelectorAll('.pb');
+			console.log('pbs', pbs);
+			pbs.forEach(pb => 
+			{
 
-			if (tbl)
-			{	const trs = tbl.querySelectorAll('TR');
-				trs.forEach((tr, i) => 
-				{	if (i > 0)
-					{	tr.addEventListener('mouseenter', (e) => 
-						{	if (e.clientX !== this.X || e.clientY !== this.Y)
-							{	this.popupBlock.classList.remove('hidden');
-								this.popupBlock.style.top = e.clientY - tblRect.top + 20 + 'px';
-								this.popupBlock.style.left = e.clientX - tblRect.left + 20 + 'px';
+				// pb.addEventListener('mouseover', (e) => 
+				// {	console.log('mouseover', e.target);
+				// });
 
-								this.showRowContent(tr, i);
+				const tbl = this.table = pb.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);			
+				const tblRect = tbl.getBoundingClientRect();
 
-								this.X = e.clientX;
-								this.Y = e.clientY;
-							}
-						});
-					}
-				});
+				if (tbl)
+				{	const trs = tbl.querySelectorAll('TR');
+					trs.forEach((tr, i) => 
+					{	if (i === 1)
+						{	this.tableNrOfColumns = tr.querySelectorAll('TD').length;
+						}
+						if (i > 0)
+						{	tr.addEventListener('mouseenter', (e) => 
+							{	if (e.clientX !== this.X || e.clientY !== this.Y)
+								{	this.popupBlock.classList.remove('hidden');
+									this.popupBlock.style.top = e.clientY - tblRect.top + 20 + 'px';
+									this.popupBlock.style.left = e.clientX - tblRect.left + 20 + 'px';
+									const td = e.explicitOriginalTarget;
+	//console.log(e, e.explicitOriginalTarget);
+									this.showRowContent(tr, i, td.cellIndex);
 
-				tbl.addEventListener('mouseleave', (e) => 
-				{	this.popupBlock.classList.add('hidden');
-				});
-
-			}
-		 	console.log('*** nrOfDraws', this.nrOfDraws++);
-
-				const pbs = document.querySelectorAll('.pb');
-				console.log('pbs', pbs);
-				pbs.forEach(pb => {
-					pb.addEventListener('mouseover', (e) => 
-					{	console.log('mouseover', e.target);
+									this.X = e.clientX;
+									this.Y = e.clientY;
+								}
+							});
+						}
 					});
-				});
-				const page = oControlHost.page;
-				console.log('*** page', page);
+
+					tbl.addEventListener('mouseleave', (e) => 
+					{	this.popupBlock.classList.add('hidden');
+					});
+
+				}
+
+			});
 		 
 		}
 
