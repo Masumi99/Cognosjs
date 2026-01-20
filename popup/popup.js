@@ -111,17 +111,16 @@ define(function () {
 				// const win = window;
 				// console.log('Window', win);
 				console.log('*** oControlHost', oControlHost);
-				const pb = document.querySelector('.pb');
-				console.log('pb', pb);
-				pb.addEventListener('mouseover', (e) => 
-				{	console.log('mouseover', e.target);
+			
+				const pbs = document.querySelectorAll('.pb');
+				console.log('pbs', pbs);
+				pbs.forEach(pb => {
+					pb.addEventListener('mouseover', (e) => 
+					{	console.log('mouseover', e.target);
+					});
 				});
-
 				const page = oControlHost.page;
 				console.log('*** page', page);
-				if(page)
-				{	page.addEventListener('refresh', () => {console.log('*** Refresh')});
-				}
 
 		}
 	 
