@@ -116,7 +116,13 @@ define(function () {
 				pb.addEventListener('mouseover', (e) => 
 				{	console.log('mouseover', e.target);
 				});
-			
+
+				const page = oControlHost.page;
+				console.log('*** page', page);
+				if(page)
+				{	page.addEventListener('refresh', () => {console.log('*** Refresh')});
+				}
+
 		}
 	 
 	 	// -- initialize --------------------------------------------------
