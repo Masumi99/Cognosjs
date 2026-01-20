@@ -102,6 +102,8 @@ define(function () {
 									this.popupBlock.style.left = e.clientX - tblRect.left + 20 + 'px';
 									const td = e.explicitOriginalTarget;
 	//console.log(e, e.explicitOriginalTarget);
+
+								 	console.log('*** tr', tr);
 									this.showRowContent(tr, i, td.cellIndex);
 
 									this.X = e.clientX;
