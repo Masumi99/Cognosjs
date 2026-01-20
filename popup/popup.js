@@ -106,7 +106,9 @@ define(function () {
 				console.log('Window', win);
 				const pb = document.querySelector('.pb');
 				console.log('pb', pb);
-
+				pb.addEventListener('mouseover', (e) => 
+				{	console.log(e.target);
+				});
 		}
 
 		// -- initialize --------------------------------------------------
