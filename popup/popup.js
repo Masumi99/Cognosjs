@@ -110,6 +110,7 @@ define(function () {
 		{
 				// const win = window;
 				// console.log('Window', win);
+				console.log('*** oControlHost', oControlHost);
 				const pb = document.querySelector('.pb');
 				console.log('pb', pb);
 				pb.addEventListener('mouseover', (e) => 
