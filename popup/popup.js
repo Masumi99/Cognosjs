@@ -84,7 +84,10 @@ define(function () {
 				// {	console.log('mouseover', e.target);
 				// });
 
-				const tbl = this.table = pb.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);			
+				const popupBlock = pb.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
+				popupBlock?.classList.add('popupBlock');
+
+				const tbl = this.table = pb.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);		
 				console.log('*** pb', pb, '*** tbl', tbl);
 				const tblRect = tbl.getBoundingClientRect();
 
@@ -97,13 +100,10 @@ define(function () {
 						if (i > 0)
 						{	tr.addEventListener('mouseenter', (e) => 
 							{	if (e.clientX !== this.X || e.clientY !== this.Y)
-								{	this.popupBlock.classList.remove('hidden');
-									this.popupBlock.style.top = e.clientY - tblRect.top + 20 + 'px';
-									this.popupBlock.style.left = e.clientX - tblRect.left + 20 + 'px';
+								{	popupBlock.classList.remove('hidden');
+									popupBlock.style.top = e.clientY - tblRect.top + 20 + 'px';
+									popupBlock.style.left = e.clientX - tblRect.left + 20 + 'px';
 									const td = e.explicitOriginalTarget;
-	//console.log(e, e.explicitOriginalTarget);
-
-								 	console.log('*** tr', tr);
 									this.showRowContent(tr, i, td.cellIndex);
 
 									this.X = e.clientX;
@@ -114,15 +114,13 @@ define(function () {
 					});
 
 					tbl.addEventListener('mouseleave', (e) => 
-					{	this.popupBlock.classList.add('hidden');
+					{	popupBlock.classList.add('hidden');
 					});
 
 				}
 
 			});
-		 
 		}
-
 
 		// -- initialize --------------------------------------------------
 
