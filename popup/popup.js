@@ -47,7 +47,7 @@ define(function () {
 		}
 	}
 
-	showRowContent(selectedRow, rowNr)		// in selectedRow moet nog de id of het nummer worden opgehaald
+	showRowContent(popupBlock, selectedRow, rowNr)		// in selectedRow moet nog de id of het nummer worden opgehaald
 	{	let str = '<table>';
 
 		// *** in de tr moet het regelnummer worden opgenomen en worden opgezocht, cellvalue i wordt dan die waarde
@@ -60,7 +60,7 @@ define(function () {
 					</tr>`; 										// 0 wijzigen in rownumber 
 		});
 		str += '</table>'
-		this.popupBlock.innerHTML = str;
+		popupBlock.innerHTML = str;
 	}
 
 		// -- draw --------------------------------------------------
@@ -104,7 +104,7 @@ define(function () {
 									popupBlock.style.top = e.clientY - tblRect.top + 20 + 'px';
 									popupBlock.style.left = e.clientX - tblRect.left + 20 + 'px';
 									const td = e.explicitOriginalTarget;
-									this.showRowContent(tr, i, td.cellIndex);
+									this.showRowContent(popupBlock, tr, i, td.cellIndex);
 
 									this.X = e.clientX;
 									this.Y = e.clientY;
