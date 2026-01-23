@@ -78,7 +78,7 @@ define(function () {
 		this.showColumnNumbers.forEach((col, i) => 
 		{	str += `	<tr>
 						<td>${this.db.columnNames[col]}</td>
-						<td>${this.db.getCellValue(rowNr - 1, this.showColumnNumbers[i])}</td>
+						<td>${this.db.getFormattedCellValue(rowNr - 1, this.showColumnNumbers[i])}</td>
 					</tr>`; 
 		});
 		str += '</table>'
