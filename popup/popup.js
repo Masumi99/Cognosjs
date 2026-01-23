@@ -47,7 +47,7 @@ define(function () {
 		}
 	}
 
-	showRowContent(selectedRow, rowNr, colNr)		// in selectedRow moet nog de id of het nummer worden opgehaald
+	showRowContent(popupBlock, selectedRow, rowNr, colNr)		// in selectedRow moet nog de id of het nummer worden opgehaald
 	{	const cols = [];
 		if (selectedRow.querySelectorAll('TD').length < this.tableNrOfColumns)
 		{	const tds = selectedRow.querySelectorAll('TD');
@@ -82,7 +82,7 @@ define(function () {
 					</tr>`; 
 		});
 		str += '</table>'
-		this.popupBlock.innerHTML = str;
+		popupBlock.innerHTML = str;
 	}
 	 
 //	showRowContent(popupBlock, selectedRow, rowNr)		// in selectedRow moet nog de id of het nummer worden opgehaald
