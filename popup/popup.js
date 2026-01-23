@@ -118,6 +118,34 @@ define(function () {
 			pbs.forEach(pb => 
 			{
 
+				pb.addEventListener('mouseover', (e) => 
+				{	console.log('mouseover', e.target);
+				});
+
+				// const popupBlock = pb.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
+				// popupBlock?.classList.add('popupBlock');
+
+				// const tbl = this.table = pb.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);		
+				// //console.log('*** pb', pb, '*** tbl', tbl);
+				// tbl.addEventListener('mouseover', (e) => 
+				// {	console.log(e, e.target)
+				// });
+			});
+		}
+
+	draw_ok(oControlHost) 
+	 {	this.insertStyle(oControlHost);
+
+			if (this.popupBlock)
+			{	this.popupBlock.classList.add('hidden');
+				this.popupBlock.classList.add(`popupBlock_${this.uniqueId}`);
+			}
+
+			const pbs = document.querySelectorAll('.pb');
+			console.log('pbs', pbs);
+			pbs.forEach(pb => 
+			{
+
 				// pb.addEventListener('mouseover', (e) => 
 				// {	console.log('mouseover', e.target);
 				// });
