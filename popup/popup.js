@@ -119,9 +119,10 @@ define(function () {
 			{
 
 				pb.addEventListener('mouseover', (e) => 
-				{	console.log('mouseover', e.target);
+				{	if (e.target.nodeName === 'TD')
+					{	console.log('mouseover', e.target);
+					}
 				});
-
 				// const popupBlock = pb.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
 				// popupBlock?.classList.add('popupBlock');
 
