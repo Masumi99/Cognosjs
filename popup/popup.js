@@ -47,21 +47,59 @@ define(function () {
 		}
 	}
 
-	showRowContent(popupBlock, selectedRow, rowNr)		// in selectedRow moet nog de id of het nummer worden opgehaald
-	{	let str = '<table>';
+	showRowContent(selectedRow, rowNr, colNr)		// in selectedRow moet nog de id of het nummer worden opgehaald
+	{	const cols = [];
+		if (selectedRow.querySelectorAll('TD').length < this.tableNrOfColumns)
+		{	const tds = selectedRow.querySelectorAll('TD');
+			tds.forEach(td => 
+			{	cols.push(td);
+			});
 
-		// *** in de tr moet het regelnummer worden opgenomen en worden opgezocht, cellvalue i wordt dan die waarde
-		//for(let i = 0; i < this.showColumnNumbers.length; i++)
+			const trs = this.table.querySelectorAll('TR');
+			for(let i = rowNr; i > 0; i--)
+			{	const tdsUp = trs[i].querySelectorAll('TD');
+				const nrOfTds = tdsUp.length;
+				if (nrOfTds > tds.length)
+				{	for (let j = nrOfTds - cols.length; j > 0; j--)	// haal kolommen aan linkerkant er bij
+					{	cols.unshift(tdsUp[j]);					// voeg toe aan begin van array;
+					}
+				}	
+			}
+			console.log('minder kolommen', cols);
+		}
+		else
+		{	console.log('aantal kolommen gelijk aan eerste rij');
+			console.log('row number', rowNr, colNr, selectedRow); //selectedRow.rowIndex, td.cellIndex
+		}
+		
+		
+		let str = '<table>';
+
 		this.showColumnNumbers.forEach((col, i) => 
-		{	//const col = this.showColumnNumbers[i];
-			str += `	<tr>
+		{	str += `	<tr>
 						<td>${this.db.columnNames[col]}</td>
 						<td>${this.db.getCellValue(rowNr - 1, this.showColumnNumbers[i])}</td>
-					</tr>`; 										// 0 wijzigen in rownumber 
+					</tr>`; 
 		});
 		str += '</table>'
-		popupBlock.innerHTML = str;
+		this.popupBlock.innerHTML = str;
 	}
+	 
+//	showRowContent(popupBlock, selectedRow, rowNr)		// in selectedRow moet nog de id of het nummer worden opgehaald
+//	{	let str = '<table>';
+//
+//		// *** in de tr moet het regelnummer worden opgenomen en worden opgezocht, cellvalue i wordt dan die waarde
+//		//for(let i = 0; i < this.showColumnNumbers.length; i++)
+//		this.showColumnNumbers.forEach((col, i) => 
+//		{	//const col = this.showColumnNumbers[i];
+//			str += `	<tr>
+//						<td>${this.db.columnNames[col]}</td>
+//						<td>${this.db.getCellValue(rowNr - 1, this.showColumnNumbers[i])}</td>
+//					</tr>`; 										// 0 wijzigen in rownumber 
+//		});
+//		str += '</table>'
+//		popupBlock.innerHTML = str;
+//	}
 
 		// -- draw --------------------------------------------------
 	
