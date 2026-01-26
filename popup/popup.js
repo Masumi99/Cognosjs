@@ -47,145 +47,128 @@ define(function () {
 		}
 	}
 
-	showRowContent(popupBlock, selectedRow, rowNr, colNr)		// in selectedRow moet nog de id of het nummer worden opgehaald
-	{	const cols = [];
+	getColumnsFromRow(tbl, selectedRow, rowNr)
+	{	console.log(tbl, selectedRow, rowNr);
+		const cols = [];
 		if (selectedRow.querySelectorAll('TD').length < this.tableNrOfColumns)
 		{	const tds = selectedRow.querySelectorAll('TD');
 			tds.forEach(td => 
 			{	cols.push(td);
 			});
 
-			const trs = this.table.querySelectorAll('TR');
+			const trs = tbl.querySelectorAll('TR');
+
 			for(let i = rowNr; i > 0; i--)
 			{	const tdsUp = trs[i].querySelectorAll('TD');
 				const nrOfTds = tdsUp.length;
 				if (nrOfTds > tds.length)
-				{	for (let j = nrOfTds - cols.length; j > 0; j--)	// haal kolommen aan linkerkant er bij
-					{	cols.unshift(tdsUp[j]);					// voeg toe aan begin van array;
+				{	for (let j = nrOfTds - cols.length; j > 0; j--)		// haal kolommen aan linkerkant er bij
+					{	cols.unshift(tdsUp[j]);							// voeg toe aan begin van array;
 					}
 				}	
 			}
-			console.log('minder kolommen', cols);
 		}
 		else
-		{	console.log('aantal kolommen gelijk aan eerste rij');
-			console.log('row number', rowNr, colNr, selectedRow); //selectedRow.rowIndex, td.cellIndex
+		{	const tds = selectedRow.querySelectorAll('TD');
+			tds.forEach(td => 
+			{	cols.push(td);
+			});			
 		}
-		
-		
+
+
+		console.log('cols', cols);
+		return cols;
+	}
+
+	getRowFromQuery(cols)
+	{	//console.log('uniqueColumnNamesTable', this.uniqueColumnNamesTable);
+		//console.log('uniqueColumnNamesQuery', this.uniqueColumnNamesQuery);
+		let stopSearch = false;
+		let rowNr = 0;
+
+		//console.log('cols', cols);
+
+		while(!stopSearch && rowNr < this.db.rowCount)
+		{	for (let i = 0; i < this.uniqueColumnNumbersQuery.length; i++)
+			//this.uniqueColumnNamesQuery.forEach(qryCol => 
+			{	const columnValue = this.db.getFormattedCellValue(rowNr, this.uniqueColumnNumbersQuery[i]);
+				//console.log('columnValue', columnValue);
+				const valTableCell = cols[this.uniqueColumnNumbersTable[i]].innerText;
+				if (valTableCell === columnValue)
+				{	console.log('found', rowNr, valTableCell, columnValue);
+					stopSearch = true;
+					return rowNr;
+				}
+				else {//console.log('not found', cols[i], columnValue);
+				}
+				//if (qryColthis.db
+			}
+			rowNr++;
+			//});
+
+		}
+		//console.log('getRowFromQuery');
+		return 0;
+	}
+	 
+	showRowContent(popupBlock, tbl, selectedRow, rowNr, colNr)
+	{	const cols = this.getColumnsFromRow(tbl, selectedRow, rowNr);
+		const queryRow = this.getRowFromQuery(cols);
 		let str = '<table>';
 
 		this.showColumnNumbers.forEach((col, i) => 
 		{	str += `	<tr>
 						<td>${this.db.columnNames[col]}</td>
-						<td>${this.db.getFormattedCellValue(rowNr - 1, this.showColumnNumbers[i])}</td>
+						<td>${this.db.getFormattedCellValue(queryRow, this.showColumnNumbers[i])}</td>
 					</tr>`; 
 		});
+
+		// this.showColumnNumbers.forEach((col, i) => 
+		// {	str += `	<tr>
+		// 				<td>${this.db.columnNames[col]}</td>
+		// 				<td>${this.db.getFormattedCellValue(rowNr - 1, this.showColumnNumbers[i])}</td>
+		// 			</tr>`; 
+		// });
 		str += '</table>'
 		popupBlock.innerHTML = str;
 	}
-	 
-//	showRowContent(popupBlock, selectedRow, rowNr)		// in selectedRow moet nog de id of het nummer worden opgehaald
-//	{	let str = '<table>';
-//
-//		// *** in de tr moet het regelnummer worden opgenomen en worden opgezocht, cellvalue i wordt dan die waarde
-//		//for(let i = 0; i < this.showColumnNumbers.length; i++)
-//		this.showColumnNumbers.forEach((col, i) => 
-//		{	//const col = this.showColumnNumbers[i];
-//			str += `	<tr>
-//						<td>${this.db.columnNames[col]}</td>
-//						<td>${this.db.getCellValue(rowNr - 1, this.showColumnNumbers[i])}</td>
-//					</tr>`; 										// 0 wijzigen in rownumber 
-//		});
-//		str += '</table>'
-//		popupBlock.innerHTML = str;
-//	}
 
+	getUniqueTableColumnNumbers(tbl)
+	{	const trs = tbl.querySelectorAll('TR');
+		const tds = trs[0].querySelectorAll('TD');
+		tds.forEach(td => 
+		{	this.uniqueColumnNamesTable.forEach((col, i) => 
+			{	if (td.innerText === col)
+				{	this.uniqueColumnNumbersTable.push(i);
+				}		
+			});	
+		})
+	}
 		// -- draw --------------------------------------------------
 	
-		// alleen nodig als de control een UI heeft
-
 		draw(oControlHost) 
 		{	this.insertStyle(oControlHost);
 
-			if (this.popupBlock)
-			{	this.popupBlock.classList.add('hidden');
-				this.popupBlock.classList.add(`popupBlock_${this.uniqueId}`);
-			}
-
 			const pbs = document.querySelectorAll('.pb');
-			console.log('pbs', pbs);
 			pbs.forEach(pb => 
-			{
+			{	const tbl = pb.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);		
+				const popupBlock = pb.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
+				popupBlock?.classList.add(`popupBlock_${this.uniqueId}`);
+
+				this.getUniqueTableColumnNumbers(tbl);
+				console.log('Unieke kolommen in tabel',this.uniqueColumnNamesTable, this.uniqueColumnNumbersTable);
 
 				pb.addEventListener('mouseover', (e) => 
 				{	if (e.target.nodeName === 'TD')
-					{	console.log('mouseover', e.target);
+					{	const row = e.target.parentElement;
+						this.showRowContent(popupBlock, tbl, row, row.rowIndex, e.target.cellIndex)
+						popupBlock.classList.remove('hidden');
 					}
 				});
-				// const popupBlock = pb.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
-				// popupBlock?.classList.add('popupBlock');
 
-				// const tbl = this.table = pb.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);		
-				// //console.log('*** pb', pb, '*** tbl', tbl);
-				// tbl.addEventListener('mouseover', (e) => 
-				// {	console.log(e, e.target)
-				// });
-			});
-		}
-
-	draw_ok(oControlHost) 
-	 {	this.insertStyle(oControlHost);
-
-			if (this.popupBlock)
-			{	this.popupBlock.classList.add('hidden');
-				this.popupBlock.classList.add(`popupBlock_${this.uniqueId}`);
-			}
-
-			const pbs = document.querySelectorAll('.pb');
-			console.log('pbs', pbs);
-			pbs.forEach(pb => 
-			{
-
-				// pb.addEventListener('mouseover', (e) => 
-				// {	console.log('mouseover', e.target);
-				// });
-
-				const popupBlock = pb.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
-				popupBlock?.classList.add('popupBlock');
-
-				const tbl = this.table = pb.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);		
-				console.log('*** pb', pb, '*** tbl', tbl);
-				const tblRect = tbl.getBoundingClientRect();
-
-				if (tbl)
-				{	const trs = tbl.querySelectorAll('TR');
-					trs.forEach((tr, i) => 
-					{	if (i === 1)
-						{	this.tableNrOfColumns = tr.querySelectorAll('TD').length;
-						}
-						if (i > 0)
-						{	tr.addEventListener('mouseenter', (e) => 
-							{	if (e.clientX !== this.X || e.clientY !== this.Y)
-								{	popupBlock.classList.remove('hidden');
-									popupBlock.style.top = e.clientY - tblRect.top + 20 + 'px';
-									popupBlock.style.left = e.clientX - tblRect.left + 20 + 'px';
-									const td = e.explicitOriginalTarget;
-									this.showRowContent(popupBlock, tr, i, td.cellIndex);
-
-									this.X = e.clientX;
-									this.Y = e.clientY;
-								}
-							});
-						}
-					});
-
-					tbl.addEventListener('mouseleave', (e) => 
-					{	popupBlock.classList.add('hidden');
-					});
-
-				}
-
+				tbl.addEventListener('mouseleave', (e) => 
+				{	popupBlock.classList.add('hidden');
+				});
 			});
 		}
 
@@ -203,25 +186,31 @@ define(function () {
 	 	// -- initialize --------------------------------------------------
 
 		initialize(oControlHost, fnDoneInitializing) 
-		{	const o 					= oControlHost.configuration; 				// argumenten die worden meegegeven aan de custom control
-			if (o != null)														// voorkomen dat er een foutmelding optreedt
-			{	this.tableAttributeName	= o["table attribute name"]		|| '';		// naam van attribute om naar tabel te zoeken
-				this.tableName			= o["table name"]				|| '';		// naam van de tabel
-				this.tableAttributeName	= o["popup block attribute name"]	|| '';		// naam van attribute om naar blok te zoeken
-				this.popupBlockName		= o["popup block name"]			|| '';		// naam van het blok dat getoond moet worden bij popup
-				this.showColumns		= o["show query column names"]	|| [];		// namen van kolommen die getoond moeten worden bij popup
+		{	const o 						= oControlHost.configuration; 					// argumenten die worden meegegeven aan de custom control
+			if (o != null)																	// voorkomen dat er een foutmelding optreedt
+			{	this.tableAttributeName		= o["table attribute name"]			|| '';		// naam van attribute om naar tabel te zoeken
+				this.tableName				= o["table name"]					|| '';		// naam van de tabel
+				this.tableAttributeName		= o["popup block attribute name"]	|| '';		// naam van attribute om naar blok te zoeken
+				this.popupBlockName			= o["popup block name"]				|| '';		// naam van het blok dat getoond moet worden bij popup
+				this.showColumns			= o["show query column names"]		|| [];		// namen van kolommen die getoond moeten worden bij popup
 				
-				this.uniqueColumnNamesTable = o["unique column names table"] || [];
-				this.uniqueColumnNamesQuery = o["unique column names query"] || [];
-				
-				console.log('oControlHost', o, this.showColumns);
+				this.uniqueColumnNamesTable = o["unique column names table"] 	|| [];
+				this.uniqueColumnNamesQuery = o["unique column names query"] 	|| [];
+
+				this.tableNrOfColumns = 0;
+				this.db = null;
+				this.table = null;
+				this.showColumnNumbers 	= [];
+				this.uniqueColumnNumbersQuery = [];
+				this.uniqueColumnNumbersTable = [];
+
+
+				//console.log('oControlHost', o, this.showColumns);
 			}
 
-			this.containerId = oControlHost.container.getAttribute('id'); 
-			console.log('*** container id', this.containerId);
-
-			this.popupBlock = document.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
-			this.popupBlock?.classList.add('popupBlock');
+			this.uniqueId = oControlHost.container.getAttribute('id'); 
+			// this.popupBlock = document.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
+			// this.popupBlock?.classList.add('popupBlock');
 			this.X = 0;
 			this.Y = 0;
 
@@ -230,9 +219,7 @@ define(function () {
 		}
 
 		setData(oControlHost, oDataStore)
-		{   this.db = oDataStore;
-			this.showColumnNumbers 	= [];
-			this.uniqueColumnNumbersQuery = [];
+		{	this.db = oDataStore;
 
 			this.showColumns.forEach(col => 
 			{	const nr = this.db.getColumnIndex(col);
@@ -247,11 +234,6 @@ define(function () {
 				{	this.uniqueColumnNumbersQuery.push(nr);
 				}
 			});
-
-
-
-			console.log('uniqueColumnNumbersQuery', this.uniqueColumnNumbersQuery);
-
 		}
 	};
 
