@@ -21,7 +21,7 @@ define(function () {
 		if (cont)
 		{	cont.innerHTML += 
 		`<style> 
-			.popupBlock {
+			.popupBlock_${this.uniqueId} {
 				position: absolute;
 				background-color: white;
 				font-family: "Segoe UI", Arial, sans-serif;
