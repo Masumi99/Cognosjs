@@ -175,7 +175,8 @@ define(function () {
 
 			this.getUniqueTableColumnNumbers(tbl);
 
-			pb.addEventListener('mouseover', (e) => 
+			tbl.addEventListener('mouseover', (e) => 
+			//pb.addEventListener('mouseover', (e) => 
 			{	if (e.target.nodeName === 'TD')
 				{	const row = e.target.parentElement;
 					console.log('row', row.rowIndex, 'column', e.target.cellIndex);
