@@ -165,6 +165,7 @@ define(function () {
 			pb.addEventListener('mouseover', (e) => 
 			{	if (e.target.nodeName === 'TD')
 				{	const row = e.target.parentElement;
+					console.log('row', row.rowIndex, 'column', e.target.cellIndex);
 					this.showRowContent(popupBlock, tbl, row, row.rowIndex, e.target.cellIndex)
 					popupBlock.classList.remove('hidden');
 
