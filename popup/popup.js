@@ -103,6 +103,7 @@ define(function () {
 	{	const cols = this.getColumnsFromRow(tbl, selectedRow, rowNr);
 		const queryRow = this.getRowFromQuery(cols);
 		const popupContent = popupBlock.querySelector('.popupContent');
+		if (colNr === 0) {console.log('row', rowNr, 'col', colNr, 'columns', cols);}
 		let str = '<table>';
 
 		this.showColumnNumbers.forEach((col, i) => 
