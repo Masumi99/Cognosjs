@@ -104,8 +104,11 @@ define(function () {
 		const queryRow = this.getRowFromQuery(cols);
 		const popupContent = popupBlock.querySelector('.popupContent');
 
+		const contents = [];
+		cols.forEach(col => {contents.push(col?.innerText)});
+
 		if (colNr === 0) 
-		{	console.log('row', rowNr, 'col', colNr, 'queryRow', queryRow, 'columns', cols);
+		{	console.log('row', rowNr, 'col', colNr, 'queryRow', queryRow, 'columns', cols, 'contents', contents);
 		}
 	
 		if (queryRow > -1)
@@ -122,6 +125,7 @@ define(function () {
 			popupContent.innerHTML = str;
 		}
 	}
+
 
 
 	getUniqueTableColumnNumbers(tbl)
