@@ -157,6 +157,7 @@ define(function () {
 			const tblRect = tbl.getBoundingClientRect();
 			const popupBlock = pb.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
 			popupBlock?.classList.add(`popupBlock_${this.uniqueId}`);
+			popupBlock?.classList.add('hidden');
 			this.checkOrCreateContenBlock(popupBlock);
 
 			this.getUniqueTableColumnNumbers(tbl);
