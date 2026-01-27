@@ -58,7 +58,7 @@ define(function () {
 
 			const trs = tbl.querySelectorAll('TR');
 
-			for(let i = rowNr; i > 0; i--)
+			for(let i = rowNr - 1; i > 0; i--)
 			{	const tdsUp = trs[i].querySelectorAll('TD');
 				const nrOfTds = tdsUp.length;
 				if (nrOfTds > tds.length)
