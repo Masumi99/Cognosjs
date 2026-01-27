@@ -96,26 +96,30 @@ define(function () {
 			}
 			rowNr++;
 		}
-		return 0;
+		return -1;
 	}
-	 
+
 	showRowContent(popupBlock, tbl, selectedRow, rowNr, colNr)
 	{	const cols = this.getColumnsFromRow(tbl, selectedRow, rowNr);
 		const queryRow = this.getRowFromQuery(cols);
 		const popupContent = popupBlock.querySelector('.popupContent');
-		if (colNr === 0) 
-		{	console.log('row', rowNr, 'col', colNr, 'queryRow', queryRow, 'columns', cols);
-		}
-		let str = '<table>';
 
-		this.showColumnNumbers.forEach((col, i) => 
-		{	str += `	<tr>
-						<td>${this.db.columnNames[col]}</td>
-						<td>${this.db.getFormattedCellValue(queryRow, this.showColumnNumbers[i])}</td>
-					</tr>`; 
-		});
-		str += '</table>'
-		popupContent.innerHTML = str;
+		if (queryRow > -1)
+		{	if (colNr === 0) 
+			{	console.log('row', rowNr, 'col', colNr, 'queryRow', queryRow, 'columns', cols);
+			}
+			let str = '<table>';
+
+			this.showColumnNumbers.forEach((col, i) => 
+			{	str += `	<tr>
+							<td>${this.db.columnNames[col]}</td>
+							<td>${this.db.getFormattedCellValue(queryRow, this.showColumnNumbers[i])}</td>
+							</tr>
+						`; 
+			});
+			str += '</table>'
+			popupContent.innerHTML = str;
+		}
 	}
 
 	getUniqueTableColumnNumbers(tbl)
