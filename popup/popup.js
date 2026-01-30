@@ -98,8 +98,8 @@ define(function () {
 		while(!stopSearch && rowNr < this.db.rowCount)
 		{	nrOfColumnsOk = 0;
 			for (let i = 0; i < nrOfcolumnsToCheck; i++)
-			{	const columnValue = this.db.getFormattedCellValue(rowNr, this.uniqueColumnNumbersQuery[i]).replace(/\//g,'');
-				const valTableCell = cols[this.uniqueColumnNumbersTable[i]].replace(/\//g,'');
+			{	const columnValue = this.db.getFormattedCellValue(rowNr, this.uniqueColumnNumbersQuery[i]);
+				const valTableCell = cols[this.uniqueColumnNumbersTable[i]];
 				//console.log('rowNr', rowNr, 'this.db.rowCount', this.db.rowCount, 'columnValue', columnValue, 'valTableCell', valTableCell);
 				//console.log('valTableCell', valTableCell, valTableCell.replace(/([^a-zA-Z0-9:\.\/\(\)\-\s])/g, ''));
 				if (valTableCell === columnValue)
@@ -301,6 +301,7 @@ define(function () {
 				}
 			});
 			//console.log(this.uniqueColumnNamesQuery);
+			console.log('db', this.db);
 		}
 	};
 
