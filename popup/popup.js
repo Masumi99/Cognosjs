@@ -48,47 +48,65 @@ define(function () {
 	}
 
 	getColumnsFromRow(tbl, selectedRow, rowNr)
-	{	//console.log(tbl, selectedRow, rowNr);
+	{	const tdsSelected = selectedRow.querySelectorAll('TD');
+		const nrOfColumnsSelectedRow = tdsSelected.length;
+		const rows = tbl.querySelectorAll('TR');
 		const cols = [];
-		if (selectedRow.querySelectorAll('TD').length < this.tableNrOfColumns)
-		{	const tds = selectedRow.querySelectorAll('TD');
-			tds.forEach(td => 
-			{	cols.push(td);
-			});
+		const colContents = [];
+		let i = rowNr > 0 ? rowNr - 1 : rowNr;
+		//console.log('selected row, columns', nrOfColumnsSelectedRow);
 
-			const trs = tbl.querySelectorAll('TR');
+		tdsSelected.forEach(td => 
+		{	cols.push(td);
+		});
 
-			for(let i = rowNr - 1; i > 0; i--)
-			{	const tdsUp = trs[i].querySelectorAll('TD');
-				const nrOfTds = tdsUp.length;
-				if (nrOfTds > tds.length)
-				{	for (let j = nrOfTds - cols.length; j > 0; j--)		// haal kolommen aan linkerkant er bij
-					{	cols.unshift(tdsUp[j]);							// voeg toe aan begin van array;
-					}
-				}	
+		let nrOfColumns = nrOfColumnsSelectedRow;
+
+		while (nrOfColumns < this.tableNrOfColumns && i > 0)
+		{	const tds = rows[i].querySelectorAll('TD');
+			const startTd = this.tableNrOfColumns - nrOfColumns;
+			const lastTd = this.tableNrOfColumns - tds.length; 
+			//console.log('loop', i, 'startTd', startTd, 'lastTd', lastTd);
+
+			for (let j = startTd; j > lastTd; j--)
+			{	cols.unshift(tds[j-1]);
+				//console.log('unshift', tds[j]);
+
+				cols.forEach(col => {colContents.push(col.innerText);});
+				//console.log('colContents', colContents);
 			}
-		}
-		else
-		{	const tds = selectedRow.querySelectorAll('TD');
-			tds.forEach(td => 
-			{	cols.push(td);
-			});			
-		}
+
+			
 
 
-		//console.log('cols', cols);
+			nrOfColumns = tds.length;
+			i--;
+		}
+
+		//console.log('getColumnsFromRow cols', cols, 'nrOfColumns', nrOfColumns, 'this.tableNrOfColumns', this.tableNrOfColumns);
 		return cols;
 	}
 
 	getRowFromQuery(cols)
 	{	let stopSearch = false;
 		let rowNr = 0;
+		let nrOfcolumnsToCheck = this.uniqueColumnNumbersQuery.length;
+		let nrOfColumnsOk = 0;
+
+		// /([^a-zA-Z0-9:\.\/\(\)\-\s])/g;
 
 		while(!stopSearch && rowNr < this.db.rowCount)
-		{	for (let i = 0; i < this.uniqueColumnNumbersQuery.length; i++)
-			{	const columnValue = this.db.getFormattedCellValue(rowNr, this.uniqueColumnNumbersQuery[i]);
-				const valTableCell = cols[this.uniqueColumnNumbersTable[i]].innerText;
+		{	nrOfColumnsOk = 0;
+			for (let i = 0; i < nrOfcolumnsToCheck; i++)
+			{	const columnValue = this.db.getFormattedCellValue(rowNr, this.uniqueColumnNumbersQuery[i]).replace(/\//g,'');
+				const valTableCell = cols[this.uniqueColumnNumbersTable[i]].replace(/\//g,'');
+				//console.log('rowNr', rowNr, 'this.db.rowCount', this.db.rowCount, 'columnValue', columnValue, 'valTableCell', valTableCell);
+				//console.log('valTableCell', valTableCell, valTableCell.replace(/([^a-zA-Z0-9:\.\/\(\)\-\s])/g, ''));
 				if (valTableCell === columnValue)
+				{	nrOfColumnsOk++;
+				}
+				
+				if (nrOfColumnsOk === nrOfcolumnsToCheck)
 				{	//console.log('found', rowNr, valTableCell, columnValue);
 					stopSearch = true;
 					return rowNr;
@@ -101,14 +119,14 @@ define(function () {
 
 	showRowContent(popupBlock, tbl, selectedRow, rowNr, colNr)
 	{	const cols = this.getColumnsFromRow(tbl, selectedRow, rowNr);
-		const queryRow = this.getRowFromQuery(cols);
-		const popupContent = popupBlock.querySelector('.popupContent');
-
 		const contents = [];
 		cols.forEach(col => {contents.push(col?.innerText)});
+		const queryRow = this.getRowFromQuery(contents);
+		const popupContent = popupBlock.querySelector('.popupContent');
 
-		if (colNr === 0) 
-		{	console.log('row', rowNr, 'col', colNr, 'queryRow', queryRow, 'columns', cols, 'contents', contents);
+
+		//if (colNr === 0) 
+		{	//console.log('row', rowNr, 'col', colNr, 'queryRow', queryRow, 'columns', cols, 'contents', contents);		// vindt niet
 		}
 	
 		if (queryRow > -1)
@@ -128,16 +146,21 @@ define(function () {
 
 
 
+	// Eindelijk! Dit was het: de i werd gebruikt bij col ipv bij td
 	getUniqueTableColumnNumbers(tbl)
-	{	const trs = tbl.querySelectorAll('TR');
-		const tds = trs[0].querySelectorAll('TD');
-		tds.forEach(td => 
-		{	this.uniqueColumnNamesTable.forEach((col, i) => 
-			{	if (td.innerText === col)
-				{	this.uniqueColumnNumbersTable.push(i);
-				}		
-			});	
-		})
+	{	if (this.uniqueColumnNumbersTable.length === 0)
+		{	const trs = tbl.querySelectorAll('TR');
+			const tds = trs[0].querySelectorAll('TD');
+			tds.forEach((td, i) => 
+			{	this.uniqueColumnNamesTable.forEach(col => 
+				{	//console.log('x', i, td.innerText);
+					if (td.innerText === col)
+					{	this.uniqueColumnNumbersTable.push(i);
+						// console.log('getUniqueTableColumnNumbers', td.innerText, col, i);
+					}		
+				});	
+			});
+		}
 	}
 
 	checkOrCreateContenBlock(popupBlock)
@@ -158,7 +181,14 @@ define(function () {
 			this.Y = e.clientY;
 		}
 	}
-	 
+
+	getCurrentRowNr(e)
+	{	let parent = e.target;
+		while(parent.nodeName !== 'TR')
+		{	parent = parent.parentElement;
+		}
+		return parent;
+	}	 
 		// -- draw --------------------------------------------------
 	
 	draw(oControlHost) 
@@ -168,23 +198,35 @@ define(function () {
 		pbs.forEach(pb => 
 		{	const tbl = pb.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);		
 			const tblRect = tbl.getBoundingClientRect();
+			this.tableNrOfColumns = tbl.querySelectorAll('TR')[0].querySelectorAll('TD').length;
+
+			console.log('this.tableNrOfColumns', this.tableNrOfColumns);
+
 			const popupBlock = pb.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
 			popupBlock?.classList.add(`popupBlock_${this.uniqueId}`);
 			popupBlock?.classList.add('hidden');
-			this.checkOrCreateContenBlock(popupBlock);
 
+			this.checkOrCreateContenBlock(popupBlock);
 			this.getUniqueTableColumnNumbers(tbl);
 
-			tbl.addEventListener('mouseover', (e) => 
-			//pb.addEventListener('mouseover', (e) => 
-			{	if (e.target.nodeName === 'TD')
-				{	const row = e.target.parentElement;
-					console.log('row', row.rowIndex, 'column', e.target.cellIndex);
-					this.showRowContent(popupBlock, tbl, row, row.rowIndex, e.target.cellIndex)
-					popupBlock.classList.remove('hidden');
+			let lastRowNr = -1;
 
-					this.positionPopup(e, popupBlock, tblRect);
+			tbl.addEventListener('mouseover', (e) => 
+			//pb.addEventListener('mouseover', (e) => 	// aangepast omdat er te veel events afvuren
+			{	//if (e.target.nodeName === 'TD')
+				{	const row = this.getCurrentRowNr(e);		//= e.target.parentElement;
+					const rowNr = row.rowIndex;
+					if (lastRowNr !== rowNr)
+					{	
+						console.log('mouseover', e.target.nodeName, 'row', rowNr, 'column', e.target.cellIndex, 'new', e.target.rowIndex);							// *** vindt wel
+						this.showRowContent(popupBlock, tbl, row, rowNr, e.target.cellIndex)
+						popupBlock.classList.remove('hidden');
+
+						this.positionPopup(e, popupBlock, tblRect);
+						lastRowNr = rowNr;
+					}
 				}
+				//else {console.log('Not TD');}
 			});
 
 			tbl.addEventListener('mouseleave', (e) => 
@@ -225,7 +267,7 @@ define(function () {
 				this.table = null;
 				this.showColumnNumbers 	= [];
 				this.uniqueColumnNumbersQuery = [];
-				this.uniqueColumnNumbersTable = [];
+				this.uniqueColumnNumbersTable = [];	// table is fout
 
 
 				//console.log('oControlHost', o, this.showColumns);
@@ -255,8 +297,10 @@ define(function () {
 			{	const nr = this.db.getColumnIndex(col);
 				if(nr !== NaN)
 				{	this.uniqueColumnNumbersQuery.push(nr);
+					console.log(nr, col);
 				}
 			});
+			//console.log(this.uniqueColumnNamesQuery);
 		}
 	};
 
