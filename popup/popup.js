@@ -23,7 +23,7 @@ define(function () {
 		`<style> 
 			.popupBlock_${this.uniqueId} {
 				position: absolute;
-				/* background-color: white; */
+				background-color: ${this.popupBlockBackgroundColor};
 				font-family: "Segoe UI", Arial, sans-serif;
 				border: 2px solid purple;
 				border-radius: 5px;
@@ -241,6 +241,7 @@ define(function () {
 			this.uniqueColumnNamesQuery = o["unique column names query"] 	|| [];
 			this.popupLeft 				= o["popup left"];
 			this.popupTop 				= o["popup top"];
+			this.popupBlockBackgroundColor	= o["popup block background color"] || 'transparent';
 
 			this.tableNrOfColumns 		= 0;
 			this.db 					= null;
