@@ -23,12 +23,15 @@ define(function () {
 		`<style> 
 			.popupBlock_${this.uniqueId} {
 				position: absolute;
-				background-color: ${this.popupBlockBackgroundColor};
 				font-family: "Segoe UI", Arial, sans-serif;
 				border: 2px solid purple;
 				border-radius: 5px;
 				z-index: 100;
 				box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+
+				.popupContent {
+					background-color: ${this.popupBlockBackgroundColor};
+				}
 
 				table {
 					margin: 4px;
