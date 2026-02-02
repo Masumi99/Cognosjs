@@ -23,7 +23,7 @@ define(function () {
 		`<style> 
 			.popupBlock_${this.uniqueId} {
 				position: absolute;
-				background-color: white;
+				/* background-color: white; */
 				font-family: "Segoe UI", Arial, sans-serif;
 				border: 2px solid purple;
 				border-radius: 5px;
