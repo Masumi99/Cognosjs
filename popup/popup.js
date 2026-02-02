@@ -47,68 +47,35 @@ define(function () {
 		}
 	}
 
-	getColumnsFromRow(tbl, selectedRow, rowNr)
-	{	const tdsSelected = selectedRow.querySelectorAll('TD');
-		const nrOfColumnsSelectedRow = tdsSelected.length;
-		const rows = tbl.querySelectorAll('TR');
-		const cols = [];
-		const colContents = [];
-		let i = rowNr > 0 ? rowNr - 1 : rowNr;
-		//console.log('selected row, columns', nrOfColumnsSelectedRow);
-
-		tdsSelected.forEach(td => 
-		{	cols.push(td);
-		});
-
-		let nrOfColumns = nrOfColumnsSelectedRow;
-
-		while (nrOfColumns < this.tableNrOfColumns && i > 0)
-		{	const tds = rows[i].querySelectorAll('TD');
-			const startTd = this.tableNrOfColumns - nrOfColumns;
-			const lastTd = this.tableNrOfColumns - tds.length; 
-			//console.log('loop', i, 'startTd', startTd, 'lastTd', lastTd);
-
-			for (let j = startTd; j > lastTd; j--)
-			{	cols.unshift(tds[j-1]);
-				//console.log('unshift', tds[j]);
-
-				cols.forEach(col => {colContents.push(col.innerText);});
-				//console.log('colContents', colContents);
-			}
-
-			
-
-
-			nrOfColumns = tds.length;
-			i--;
+	// -- getColumnsFromRow -------------------------------
+	 
+	getColumnsFromRow(tbl, selectedRow, rowNr, matrix)
+	{	const cols = [];
+		for (let i = 0; i < this.uniqueColumnNumbersTable.length; i++)
+		{	cols.push(matrix[rowNr][this.uniqueColumnNumbersTable[i]]);
 		}
-
-		//console.log('getColumnsFromRow cols', cols, 'nrOfColumns', nrOfColumns, 'this.tableNrOfColumns', this.tableNrOfColumns);
 		return cols;
 	}
 
+	// -- getRowFromQuery -------------------------------
+	 
 	getRowFromQuery(cols)
 	{	let stopSearch = false;
 		let rowNr = 0;
 		let nrOfcolumnsToCheck = this.uniqueColumnNumbersQuery.length;
 		let nrOfColumnsOk = 0;
 
-		// /([^a-zA-Z0-9:\.\/\(\)\-\s])/g;
-
 		while(!stopSearch && rowNr < this.db.rowCount)
 		{	nrOfColumnsOk = 0;
 			for (let i = 0; i < nrOfcolumnsToCheck; i++)
-			{	const columnValue = this.db.getFormattedCellValue(rowNr, this.uniqueColumnNumbersQuery[i]);
-				const valTableCell = cols[this.uniqueColumnNumbersTable[i]];
-				//console.log('rowNr', rowNr, 'this.db.rowCount', this.db.rowCount, 'columnValue', columnValue, 'valTableCell', valTableCell);
-				//console.log('valTableCell', valTableCell, valTableCell.replace(/([^a-zA-Z0-9:\.\/\(\)\-\s])/g, ''));
-				if (valTableCell === columnValue)
+			{	const columnValue = this.db.getFormattedCellValue(rowNr, this.uniqueColumnNumbersQuery[i]).replace(/([^a-zA-Z0-9:\.\/\(\)\-])/g, ' ');
+				const valTableCell = cols[i].replace(/([^a-zA-Z0-9:\.\/\(\)\-])/g, ' ');
+                    if (valTableCell === columnValue)
 				{	nrOfColumnsOk++;
 				}
 				
 				if (nrOfColumnsOk === nrOfcolumnsToCheck)
-				{	//console.log('found', rowNr, valTableCell, columnValue);
-					stopSearch = true;
+				{	stopSearch = true;
 					return rowNr;
 				}
 			}
@@ -117,19 +84,14 @@ define(function () {
 		return -1;
 	}
 
-	showRowContent(popupBlock, tbl, selectedRow, rowNr, colNr)
-	{	const cols = this.getColumnsFromRow(tbl, selectedRow, rowNr);
-		const contents = [];
-		cols.forEach(col => {contents.push(col?.innerText)});
+	// -- showRowContent --------------------------------
+
+	showRowContent(popupBlock, tbl, selectedRow, rowNr, colNr, matrix)
+	{	const contents = this.getColumnsFromRow(tbl, selectedRow, rowNr, matrix);
 		const queryRow = this.getRowFromQuery(contents);
-		const popupContent = popupBlock.querySelector('.popupContent');
-
-
-		//if (colNr === 0) 
-		{	//console.log('row', rowNr, 'col', colNr, 'queryRow', queryRow, 'columns', cols, 'contents', contents);		// vindt niet
-		}
+		const popupContent = popupBlock?.querySelector('.popupContent');
 	
-		if (queryRow > -1)
+		if (popupContent && queryRow > -1)
 		{	let str = '<table>';
 
 			this.showColumnNumbers.forEach((col, i) => 
@@ -144,33 +106,34 @@ define(function () {
 		}
 	}
 
+	// -- getUniqueTableColumnNumbers ------------------------
 
-
-	// Eindelijk! Dit was het: de i werd gebruikt bij col ipv bij td
 	getUniqueTableColumnNumbers(tbl)
 	{	if (this.uniqueColumnNumbersTable.length === 0)
 		{	const trs = tbl.querySelectorAll('TR');
 			const tds = trs[0].querySelectorAll('TD');
 			tds.forEach((td, i) => 
 			{	this.uniqueColumnNamesTable.forEach(col => 
-				{	//console.log('x', i, td.innerText);
-					if (td.innerText === col)
+				{	if (td.innerText === col)
 					{	this.uniqueColumnNumbersTable.push(i);
-						// console.log('getUniqueTableColumnNumbers', td.innerText, col, i);
 					}		
 				});	
 			});
 		}
 	}
 
+	// -- checkOrCreateContenBlock ----------------------------
+
 	checkOrCreateContenBlock(popupBlock)
-	{	const content = popupBlock.querySelector('.popupContent');
+	{	const content = popupBlock?.querySelector('.popupContent');
 		if (!content)
 		{	const div = document.createElement('DIV');
 			div.classList.add('popupContent');
-			popupBlock.appendChild(div);
+			popupBlock?.appendChild(div);
 		}
 	}
+
+	// -- positionPopup ---------------------------------------
 
 	positionPopup(e, popupBlock, tblRect)
 	{	if (e.clientX !== this.X || e.clientY !== this.Y)
@@ -182,127 +145,139 @@ define(function () {
 		}
 	}
 
+	// -- getCurrentRowNr ---------------------------------------
+
 	getCurrentRowNr(e)
 	{	let parent = e.target;
 		while(parent.nodeName !== 'TR')
 		{	parent = parent.parentElement;
 		}
 		return parent;
-	}	 
-		// -- draw --------------------------------------------------
+	}
+
+	// -- tableToMatrix ------------------------------------------
+ 
+	tableToMatrix(tbl)
+	{	const matrix = [];
+
+		for (let i = 0; i < tbl.rows.length; i++) 
+		{	matrix.push([]);			
+		}
+
+		for (let rowNr = 0; rowNr < tbl.rows.length; rowNr++)
+		{	for (let colNr = 0; colNr < tbl.rows[rowNr].cells.length; colNr++)
+			{	const rowSpan = parseInt(tbl.rows[rowNr].cells[colNr]?.getAttribute('rowspan') || '1');
+				for (let j = 0; j < rowSpan; j++)
+				{	matrix[rowNr + j].push(tbl.rows[rowNr].cells[colNr]?.innerText);
+				}
+			}
+		}
+		//console.log('matrix', matrix);
+		return matrix;
+	}
+	 
+	// -- draw --------------------------------------------------
 	
 	draw(oControlHost) 
 	{	this.insertStyle(oControlHost);
 
 		const pbs = document.querySelectorAll('.pb');
 		pbs.forEach(pb => 
-		{	const tbl = pb.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);		
-			const tblRect = tbl.getBoundingClientRect();
-			this.tableNrOfColumns = tbl.querySelectorAll('TR')[0].querySelectorAll('TD').length;
+		{	if (this.tableAttributeName && this.tableName && this.popupBlockName)
+			{	const tbl 				= pb.querySelector(`[${this.tableAttributeName}^="${this.tableName}"]`);		
+				const tblRect 			= tbl.getBoundingClientRect();
+				this.tableNrOfColumns	= tbl.querySelectorAll('TR')[0].querySelectorAll('TD').length;
+				const popupBlock 		= pb.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
 
-			console.log('this.tableNrOfColumns', this.tableNrOfColumns);
+				const matrix 			= this.tableToMatrix(tbl);
 
-			const popupBlock = pb.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
-			popupBlock?.classList.add(`popupBlock_${this.uniqueId}`);
-			popupBlock?.classList.add('hidden');
+				popupBlock?.classList.add(`popupBlock_${this.uniqueId}`);
+				popupBlock?.classList.add('hidden');
 
-			this.checkOrCreateContenBlock(popupBlock);
-			this.getUniqueTableColumnNumbers(tbl);
+				this.checkOrCreateContenBlock(popupBlock);
+				this.getUniqueTableColumnNumbers(tbl);
 
-			let lastRowNr = -1;
+				let lastRowNr = -1;
 
-			tbl.addEventListener('mouseover', (e) => 
-			//pb.addEventListener('mouseover', (e) => 	// aangepast omdat er te veel events afvuren
-			{	//if (e.target.nodeName === 'TD')
-				{	const row = this.getCurrentRowNr(e);		//= e.target.parentElement;
-					const rowNr = row.rowIndex;
-					if (lastRowNr !== rowNr)
-					{	
-						console.log('mouseover', e.target.nodeName, 'row', rowNr, 'column', e.target.cellIndex, 'new', e.target.rowIndex);							// *** vindt wel
-						this.showRowContent(popupBlock, tbl, row, rowNr, e.target.cellIndex)
-						popupBlock.classList.remove('hidden');
+				tbl.addEventListener('mouseover', (e) => 
+				{	{	const row = this.getCurrentRowNr(e);		//= e.target.parentElement;
+						const rowNr = row.rowIndex;
+						if (popupBlock && lastRowNr !== rowNr)
+						{	this.showRowContent(popupBlock, tbl, row, rowNr, e.target.cellIndex, matrix)
+							popupBlock.classList.remove('hidden');
 
-						this.positionPopup(e, popupBlock, tblRect);
-						lastRowNr = rowNr;
+							this.positionPopup(e, popupBlock, tblRect);
+							lastRowNr = rowNr;
+						}
 					}
-				}
-				//else {console.log('Not TD');}
-			});
+				});
 
-			tbl.addEventListener('mouseleave', (e) => 
-			{	popupBlock.classList.add('hidden');
-			});
+				tbl.addEventListener('mouseleave', (e) => 
+				{	popupBlock?.classList.add('hidden');
+				});
+			}
+
 		});
 	}
 
 
-		// -- initialize --------------------------------------------------
+	// -- show --------------------------------------------------------
 
-		show(oControlHost) 
-		{
-				// const win = window;
-				// console.log('Window', win);
-				console.log('*** oControlHost', oControlHost);
-			
-
-		}
+	show(oControlHost) 
+	{
+	}
 	 
-	 	// -- initialize --------------------------------------------------
+ 	// -- initialize --------------------------------------------------
 
-		initialize(oControlHost, fnDoneInitializing) 
-		{	const o 						= oControlHost.configuration; 					// argumenten die worden meegegeven aan de custom control
-			if (o != null)																	// voorkomen dat er een foutmelding optreedt
-			{	this.tableAttributeName		= o["table attribute name"]			|| '';		// naam van attribute om naar tabel te zoeken
-				this.tableName				= o["table name"]					|| '';		// naam van de tabel
-				this.tableAttributeName		= o["popup block attribute name"]	|| '';		// naam van attribute om naar blok te zoeken
-				this.popupBlockName			= o["popup block name"]				|| '';		// naam van het blok dat getoond moet worden bij popup
-				this.showColumns			= o["show query column names"]		|| [];		// namen van kolommen die getoond moeten worden bij popup
-				this.uniqueColumnNamesTable = o["unique column names table"] 	|| [];
-				this.uniqueColumnNamesQuery = o["unique column names query"] 	|| [];
-				this.popupLeft 				= o["popup left"];
-				this.popupTop 				= o["popup top"];
+	initialize(oControlHost, fnDoneInitializing) 
+	{	const o 							= oControlHost.configuration; 				// argumenten die worden meegegeven aan de custom control
+		if (o != null)															// voorkomen dat er een foutmelding optreedt
+		{	this.tableAttributeName		= o["table attribute name"]		|| '';		// naam van attribute om naar tabel te zoeken
+			this.tableName				= o["table name"]				|| '';		// naam van de tabel
+			this.tableAttributeName		= o["popup block attribute name"]	|| '';		// naam van attribute om naar blok te zoeken
+			this.popupBlockName			= o["popup block name"]			|| '';		// naam van het blok dat getoond moet worden bij popup
+			this.showColumns			= o["show query column names"]	|| [];		// namen van kolommen die getoond moeten worden bij popup
+			this.uniqueColumnNamesTable = o["unique column names table"] 	|| [];
+			this.uniqueColumnNamesQuery = o["unique column names query"] 	|| [];
+			this.popupLeft 				= o["popup left"];
+			this.popupTop 				= o["popup top"];
 
-				this.tableNrOfColumns = 0;
-				this.db = null;
-				this.table = null;
-				this.showColumnNumbers 	= [];
-				this.uniqueColumnNumbersQuery = [];
-				this.uniqueColumnNumbersTable = [];	// table is fout
+			this.tableNrOfColumns 		= 0;
+			this.db 					= null;
+			//this.table 				= null;
+			this.showColumnNumbers 		= [];
+			this.uniqueColumnNumbersQuery = [];
+			this.uniqueColumnNumbersTable = [];
+		}
 
-
-				//console.log('oControlHost', o, this.showColumns);
-			}
-
-			this.uniqueId = oControlHost.container.getAttribute('id'); 
-			// this.popupBlock = document.querySelector(`[${this.tableAttributeName}^="${this.popupBlockName}"]`);
-			// this.popupBlock?.classList.add('popupBlock');
-			this.X = 0;
-			this.Y = 0;
+		this.uniqueId 					= oControlHost.container.getAttribute('id'); 
+		this.X 						= 0;
+		this.Y 						= 0;
 
 			// An optional promise that will be waited on instead of calling fnDoneInitializing. Since Version 6
 			fnDoneInitializing();									// *** aan in Cognos
-		}
+	}
 
-		setData(oControlHost, oDataStore)
-		{	this.db = oDataStore;
+	// -- setData -----------------------------------------------------
+	 
+	setData(oControlHost, oDataStore)
+	{	this.db = oDataStore;
 
-			this.showColumns.forEach(col => 
-			{	const nr = this.db.getColumnIndex(col);
-				if(nr !== NaN)
-				{	this.showColumnNumbers.push(nr);
-				}
-			});
+		this.showColumns.forEach(col => 
+		{	const nr = this.db.getColumnIndex(col);
+			if(nr !== NaN)
+			{	this.showColumnNumbers.push(nr);
+			}
+		});
 
-			this.uniqueColumnNamesQuery.forEach(col => 
-			{	const nr = this.db.getColumnIndex(col);
-				if(nr !== NaN)
-				{	this.uniqueColumnNumbersQuery.push(nr);
-					console.log(nr, col);
-				}
-			});
-			//console.log(this.uniqueColumnNamesQuery);
-			console.log('db', this.db);
-		}
+		this.uniqueColumnNamesQuery.forEach(col => 
+		{	const nr = this.db.getColumnIndex(col);
+			if(nr !== NaN)
+			{	this.uniqueColumnNumbersQuery.push(nr);
+			}
+		});
+		console.log('db', this.db);
+	}
 	};
 
 	return popup;
