@@ -359,7 +359,7 @@ define(function () {
 		console.log('db', this.db);
 	}
 
-
+	};
 	return tree;
 }
 );	
