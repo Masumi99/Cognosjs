@@ -22,6 +22,11 @@ define(function () {
 		{	cont.innerHTML += 
 		`<style> 
 
+
+			:root {
+				--plusmin: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20rem" height="20rem"><g fill="white"><path d="m5 9h4v-4h2v4h4v2h-4v4h-2v-4h-4z"/><path d="m25 9h10v2h-10z"/></g></svg>');
+			}
+
 			.tree {
 				font-family: "Segoe UI", Arial, sans-serif;
 
