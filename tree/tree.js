@@ -330,6 +330,7 @@ define(function () {
 		let str = this.arrayToTableStr(leveled, 0, 1, 2, 3, 4);
 		// * this.showBlock(str);
 		// //console.log('sorted', sorted);
+		console.log('leveled', leveled);
 		//this.arrayToTree(arr);
 		const tree = this.showTree(leveled);
 		this.setTreeEvent(tree);
