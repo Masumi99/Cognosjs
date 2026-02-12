@@ -55,6 +55,7 @@ define(function () {
 							width: 0.5rem;
 							height: 0.6rem;
 							left: -0.4rem;
+							top: -0.4rem;		/* afsluitend hoekje nog iets omhoog */
 						}
 					}
 
@@ -197,7 +198,7 @@ define(function () {
 			}
 		});
 
-		console.log(arr);
+		//console.log(arr);
 		return arr;
 	}
 
@@ -240,7 +241,8 @@ define(function () {
 	}
 
 	showTree(arr)
-	{	const body = document.querySelector('.pb');						// haal de body van de pagina op
+	showTree(arr)
+	{	const body = document.querySelector('body');						// haal de body van de pagina op
 		const tree = document.createElement('DIV')						// voeg er een div aan toe voor de tree
 		body.appendChild(tree);										// voeg tree toe aan pagina
 		tree.classList.add('tree');									// geef hem de klasse tree
@@ -266,6 +268,7 @@ define(function () {
 						});
 						if (!olFound)								// als niet gevonden
 						{	const ol = this.insertListItem(li, 'OL');	// voeg nieuwe ol toe
+                                          ol.classList.add('olHide');
 							this.insertSpan(ol);					// stop er een span in voor klikbaar plusje
 							this.insertListItem(ol, 'LI', el[1], el[3]);	// maak van nieuwe regel een li
 						}
@@ -309,6 +312,40 @@ define(function () {
 		});
 	}
 
+	addToTreeArray(arr)
+	{	arr.forEach(row => {
+			this.treeArray.push(row);
+		});
+	}
+	
+	// 1 = key, 2 = parent
+
+	testSort(arr, parentRows, level)
+	{	if (level < 40)
+		{	parentRows.forEach(row => 
+			{	const children = arr.filter((x) => x[2] === row[1] && !(x[1] === x[2] || x[2] === undefined));	// volgende niveau
+				//console.log('children', children);
+				
+				children.forEach((child) => 
+				{	this.treeArray.push(child);
+				});
+				
+				if (this.treeArray.length < arr.length)
+				{	this.testSort(arr, children, level++);
+				}
+			});
+		}
+	}
+
+	startSort(arr)
+	{	const parentRow = arr.filter((x) => x[1] === x[2] || x[2] === undefined);		// haal root op
+		this.treeArray = parentRow;														// zet root in de lege array
+		//this.treeArray.push(parentRow);													// zet root in de lege array
+		this.testSort(arr, parentRow, 0);
+		console.log('this.treeArray', this.treeArray);
+		//const str = this.arrayToTableStr(this.treeArray, 0, 1, 2, 3, 4);
+		//this.showBlock(str);
+	}
 	 
 	// -- draw --------------------------------------------------
 	
@@ -319,8 +356,6 @@ define(function () {
 		
 		this.insertStyle(oControlHost);
 
-		//const newList = this.dbSort(this.db);
-
 		const arr = this.dbToArray(this.db);
 		//let str = this.arrayToTableStr(arr, 0, 1, 2);
 		//this.showBlock(str);
@@ -328,12 +363,14 @@ define(function () {
 		// //sorted.sort((a, b) => a[1] === a[2] || (b[1] <= a[2] && b[2] <= a[2]))
 		const leveled = this.levelArray(sorted);
 		let str = this.arrayToTableStr(leveled, 0, 1, 2, 3, 4);
-		// * this.showBlock(str);
-		console.log('sorted', sorted);
-		//console.log('leveled', leveled);
-		//this.arrayToTree(arr);
-		const tree = this.showTree(leveled);
+		
+		//this.showBlock(str);
+		// //console.log('sorted', sorted);
+		//* const tree = this.showTree(leveled);
+		this.startSort(arr);
+		const tree = this.showTree(this.treeArray);
 		this.setTreeEvent(tree);
+
 	}
 
 
@@ -353,6 +390,8 @@ define(function () {
 			this.key 		= o["key"] 		|| '';
 			this.root		= o["root"] 		|| '';
 
+			this.treeArray = [];
+		 
 			// An optional promise that will be waited on instead of calling fnDoneInitializing. Since Version 6
 			fnDoneInitializing();									// *** aan in Cognos
 	}
