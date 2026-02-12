@@ -29,7 +29,13 @@ define(function () {
 
 			.tree {
 				font-family: "Segoe UI", Arial, sans-serif;
+				min-width: ${this.width};
+				min-height: ${this.height};
 
+				ul {
+					padding: 0.1rem;
+				}
+				
 				li {
 					display: block;
 					border-left: 1px solid darkgrey;
@@ -242,7 +248,7 @@ define(function () {
 	}
 
 	showTree(arr)
-	{	const body = document.querySelector('.pb');						// haal de body van de pagina op
+	{	const body = this.controlContainer;	//document.querySelector('pb');						// haal de body van de pagina op
 		const tree = document.createElement('DIV')						// voeg er een div aan toe voor de tree
 		body.appendChild(tree);										// voeg tree toe aan pagina
 		tree.classList.add('tree');									// geef hem de klasse tree
@@ -384,13 +390,17 @@ define(function () {
 
 		initialize(oControlHost, fnDoneInitializing) 
 		{	const o 			= oControlHost.configuration; 				// argumenten die worden meegegeven aan de custom control
-			this.key		= o["key"] 		|| '';
+			this.key		= o["key"] 			|| '';
 			this.parent 	= o["parent"] 		|| '';
-			this.label	= o["label"] 		|| '';
-			this.key 		= o["key"] 		|| '';
+			this.label		= o["label"] 		|| '';
+			this.key 		= o["key"] 			|| '';
 			this.root		= o["root"] 		|| '';
 
-			this.treeArray = [];
+			this.width				= o["width"] 		|| 'auto';
+			this.height				= o["height"] 		|| 'auto';
+			this.treeArray 			= [];
+		 	this.controlContainer	= oControlHost.container; 
+		 	this.uniqueId 			= oControlHost.container.getAttribute('id'); 
 		 
 			// An optional promise that will be waited on instead of calling fnDoneInitializing. Since Version 6
 			fnDoneInitializing();									// *** aan in Cognos
