@@ -68,6 +68,7 @@ define(function () {
 
 				ol {
 					position: relative;
+					left: -2rem;
 
 					span {
 						display: inline-block;
