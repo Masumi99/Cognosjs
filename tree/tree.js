@@ -77,7 +77,7 @@ define(function () {
 						background: purple var(--plusmin) 0 0;
 						background-position: -23.6px -3.6px; 
 						fill: white;
-						left: -0.15rem;
+						left: 1.8rem;
 						top: -1rem;
 						vertical-align: top;
 						text-align: center;
