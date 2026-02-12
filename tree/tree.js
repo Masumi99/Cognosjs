@@ -241,7 +241,7 @@ define(function () {
 	}
 
 	showTree(arr)
-	{	const body = document.querySelector('body');						// haal de body van de pagina op
+	{	const body = document.querySelector('.pb');						// haal de body van de pagina op
 		const tree = document.createElement('DIV')						// voeg er een div aan toe voor de tree
 		body.appendChild(tree);										// voeg tree toe aan pagina
 		tree.classList.add('tree');									// geef hem de klasse tree
