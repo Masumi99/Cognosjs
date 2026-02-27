@@ -173,7 +173,7 @@ define(function () {
 				const matrix = this.tableToMatrix(tbl);
 				this.fillMatrix(matrixBlock, matrix);
 
-			 	console.log('matrixBlock', matrixBlock);
+			 	console.log('*** matrixBlock ***', matrixBlock);
 
 				tbl.addEventListener('mouseover', (e) => 
 				{	const parent = this.getTableFromElement(e.target);
