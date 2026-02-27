@@ -42,11 +42,6 @@ define(function () {
 				position: relative;
 				background-color: white;
 
-				user-select: auto !important;
-				moz-user-select: auto !important;
-				webkit-user-select: auto !important;
-				ms-user-select: auto !important;
-				
 				&.matrixHidden {
 					visibility: hidden;
 				}
@@ -54,6 +49,11 @@ define(function () {
 				table {
 					margin: 10px;
 					font-family: "Segoe UI", Arial, sans-serif;
+
+					user-select: auto !important;
+					moz-user-select: auto !important;
+					webkit-user-select: auto !important;
+					ms-user-select: auto !important;
 
 					td {
 						padding: 1px 4px;
