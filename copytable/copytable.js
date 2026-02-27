@@ -63,6 +63,11 @@ define(function () {
 					td {
 						padding: 1px 4px;
 						border-bottom: 1px solid #EFEFEF;
+
+						user-select: auto !important;
+						-moz-user-select: auto !important;
+						-webkit-user-select: auto !important;
+						-ms-user-select: auto !important;
 					}
 					
 					tr:first-of-type {
