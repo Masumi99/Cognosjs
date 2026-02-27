@@ -167,6 +167,8 @@ define(function () {
 		if (!pbs)
 		{	let pbs = document.querySelectorAll('.pg');
 		}
+
+		console.log('*** pbs ***', pbs);
 	 
 	 	pbs.forEach(pb => 
 		{	const tbls = pb.querySelectorAll('TABLE');
