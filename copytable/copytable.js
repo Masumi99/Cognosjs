@@ -164,7 +164,7 @@ define(function () {
 	{	this.insertStyle(oControlHost);
 
 		let pbs = document.querySelectorAll('.pb');
-		if (!pbs)
+		if (pbs.length === 0)
 		{	pbs = document.querySelectorAll('.pg');
 		}
 
