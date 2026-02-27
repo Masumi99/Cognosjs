@@ -163,8 +163,12 @@ define(function () {
 	draw(oControlHost) 
 	{	this.insertStyle(oControlHost);
 
-		const pbs = document.querySelectorAll('.pb');
-		pbs.forEach(pb => 
+		let pbs = document.querySelectorAll('.pb');
+		if (!pbs)
+		{	let pbs = document.querySelectorAll('.pg');
+		}
+	 
+	 	pbs.forEach(pb => 
 		{	const tbls = pb.querySelectorAll('TABLE');
 			tbls.forEach(tbl => 
 			{	let indicatorShow = false;
