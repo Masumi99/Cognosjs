@@ -19,13 +19,15 @@ define(function () {
 		{	cont.innerHTML += 
 		`<style> 
 
+		
 		* {
 			user-select: auto !important;
 			-moz-user-select: auto !important;
 			-webkit-user-select: auto !important;
 			-ms-user-select: auto !important;
 		}
-		
+
+
 		.tableIndicator {
 				width: 20px; 
 				height: 20px; 
@@ -49,10 +51,7 @@ define(function () {
 				position: relative;
 				background-color: white;
 				z-index: 10;
-				user-select: auto !important;
-				-moz-user-select: auto !important;
-				-webkit-user-select: auto !important;
-				-ms-user-select: auto !important;
+				display: flex;
 
 				&.matrixHidden {
 					visibility: hidden;
@@ -62,36 +61,11 @@ define(function () {
 					margin: 10px;
 					font-family: "Segoe UI", Arial, sans-serif;
 
-					user-select: auto !important;
-					-moz-user-select: auto !important;
-					-webkit-user-select: auto !important;
-					-ms-user-select: auto !important;
-
-
-					tbody {
-						user-select: auto !important;
-						-moz-user-select: auto !important;
-						-webkit-user-select: auto !important;
-						-ms-user-select: auto !important;
-					}
-
 					td {
 						padding: 1px 4px;
 						border-bottom: 1px solid #EFEFEF;
+					}
 
-						user-select: auto !important;
-						-moz-user-select: auto !important;
-						-webkit-user-select: auto !important;
-						-ms-user-select: auto !important;
-					}
-					
-					tr {
-						user-select: auto !important;
-						-moz-user-select: auto !important;
-						-webkit-user-select: auto !important;
-						-ms-user-select: auto !important;
-					}
-					
 					tr:first-of-type {
 						td {
 							background-color: steelblue;
