@@ -165,7 +165,7 @@ define(function () {
 
 		let pbs = document.querySelectorAll('.pb');
 		if (!pbs)
-		{	let pbs = document.querySelectorAll('.pg');
+		{	pbs = document.querySelectorAll('.pg');
 		}
 
 		console.log('*** pbs ***', pbs);
