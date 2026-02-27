@@ -172,7 +172,8 @@ define(function () {
 		console.log('*** pbs ***', pbs);
 	 
 	 	pbs.forEach(pb => 
-		{	const tbls = pb.querySelectorAll('TABLE');
+		//{	const tbls = pb.querySelectorAll('TABLE');
+		{	const tbls = pb.querySelectorAll('[specname="list"]');
 			tbls.forEach(tbl => 
 			{	let indicatorShow = false;
 				const indicator = this.createTableIndicator(tbl);
