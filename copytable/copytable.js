@@ -137,7 +137,7 @@ define(function () {
 			div.style.bottom 	= `${tblRect.height - 10}px`;
 			div.style.width 	= `${tblRect.width}px`;
 			//tbl.parentElement.appendChild(div);
-			parent.appendChild(div);
+			parent.parentElement.appendChild(div);
 			div.classList.add('divMatrix');
 			div.classList.add('matrixHidden');
 		}
