@@ -132,7 +132,8 @@ define(function () {
 		if (!div)
 		{	const tblRect 		= tbl.getBoundingClientRect();
 			div 				= document.createElement('DIV');
-			div.style.left 		= `${tblRect.right - tblRect.x + 20}px`;
+			//div.style.left 		= `${tblRect.right - tblRect.x + 20}px`;
+			div.style.left 		= `10px`;
 			div.style.bottom 	= `${tblRect.height - 10}px`;
 			div.style.width 	= `${tblRect.width}px`;
 			tbl.parentElement.appendChild(div);
