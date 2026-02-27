@@ -134,6 +134,7 @@ define(function () {
 			div 				= document.createElement('DIV');
 			div.style.left 		= `${tblRect.right - tblRect.x + 20}px`;
 			div.style.bottom 	= `${tblRect.height - 10}px`;
+			div.style.width 	= `${tblRect.width}px`;
 			tbl.parentElement.appendChild(div);
 			div.classList.add('divMatrix');
 			div.classList.add('matrixHidden');
