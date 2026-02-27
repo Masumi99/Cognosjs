@@ -70,6 +70,13 @@ define(function () {
 						-ms-user-select: auto !important;
 					}
 					
+					tr {
+						user-select: auto !important;
+						-moz-user-select: auto !important;
+						-webkit-user-select: auto !important;
+						-ms-user-select: auto !important;
+					}
+					
 					tr:first-of-type {
 						td {
 							background-color: steelblue;
