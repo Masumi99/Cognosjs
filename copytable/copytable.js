@@ -19,6 +19,13 @@ define(function () {
 		{	cont.innerHTML += 
 		`<style> 
 
+		* {
+			user-select: auto !important;
+			-moz-user-select: auto !important;
+			-webkit-user-select: auto !important;
+			-ms-user-select: auto !important;
+		}
+		
 		.tableIndicator {
 				width: 20px; 
 				height: 20px; 
