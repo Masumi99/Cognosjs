@@ -55,7 +55,9 @@ define(function () {
 
 				&.matrixHidden {
 					visibility: hidden;
-				}
+					width: 10px;
+					height: 10px;
+					overflow: hidden;				}
 
 				table {
 					margin: 10px;
