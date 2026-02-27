@@ -41,6 +41,7 @@ define(function () {
 				box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 				position: relative;
 				background-color: white;
+				width: 10rem;
 
 				&.matrixHidden {
 					visibility: hidden;
@@ -50,10 +51,10 @@ define(function () {
 					margin: 10px;
 					font-family: "Segoe UI", Arial, sans-serif;
 
-					user-select: auto !important;
-					moz-user-select: auto !important;
-					webkit-user-select: auto !important;
-					ms-user-select: auto !important;
+					user-select: text !important;
+					moz-user-select: text !important;
+					webkit-user-select: text !important;
+					ms-user-select: text !important;
 
 					td {
 						padding: 1px 4px;
