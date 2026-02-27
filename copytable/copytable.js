@@ -60,6 +60,14 @@ define(function () {
 					-webkit-user-select: auto !important;
 					-ms-user-select: auto !important;
 
+
+					tbody {
+						user-select: auto !important;
+						-moz-user-select: auto !important;
+						-webkit-user-select: auto !important;
+						-ms-user-select: auto !important;
+					}
+
 					td {
 						padding: 1px 4px;
 						border-bottom: 1px solid #EFEFEF;
