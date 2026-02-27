@@ -126,7 +126,7 @@ define(function () {
 
 	// -- createBlockForTableMatrix ------------------------------------------
 
-	createBlockForTableMatrix(tbl)
+	createBlockForTableMatrix(parent, tbl)
 	{	let div = tbl.parentElement?.querySelector('.divMatrix');
 
 		if (!div)
@@ -136,7 +136,8 @@ define(function () {
 			div.style.left 		= `10px`;
 			div.style.bottom 	= `${tblRect.height - 10}px`;
 			div.style.width 	= `${tblRect.width}px`;
-			tbl.parentElement.appendChild(div);
+			//tbl.parentElement.appendChild(div);
+			parent.appendChild(div);
 			div.classList.add('divMatrix');
 			div.classList.add('matrixHidden');
 		}
@@ -177,7 +178,7 @@ define(function () {
 			tbls.forEach(tbl => 
 			{	let indicatorShow = false;
 				const indicator = this.createTableIndicator(tbl);
-				const matrixBlock = this.createBlockForTableMatrix(tbl);
+				const matrixBlock = this.createBlockForTableMatrix(pb, tbl);
 				const matrix = this.tableToMatrix(tbl);
 				this.fillMatrix(matrixBlock, matrix);
 
